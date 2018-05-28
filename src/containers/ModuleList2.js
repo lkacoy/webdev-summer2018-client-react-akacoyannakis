@@ -6,6 +6,7 @@ class ModuleList2 extends React.Component {
         constructor() {
             super();
             this.state = {
+                module: { title: '' },
                 modules: [
                     {title: 'Module 1 - jQuery', id: 123},
                     {title: 'Module 2 - React', id: 234},
@@ -15,6 +16,16 @@ class ModuleList2 extends React.Component {
                     {title: 'Module 6 - MongoDB', id: 678}
                 ]
             };
+            this.titleChanged = this.titleChanged.bind(this);
+            this.createModule = this.createModule.bind(this);
+        }
+
+        titleChanged(event) {
+            this.setState({module: {title: event.target.value}});
+        }
+
+        createModule() {
+            console.log(this.state.module);
         }
 
         renderListOfModules() {
@@ -29,7 +40,18 @@ class ModuleList2 extends React.Component {
         render() {
             return (
                 <div>
-                {this.renderListOfModules()}
+                    <br/>
+                    <input  onChange={this.titleChanged}
+                            className="form-control"
+                            placeholder="title"
+                            value={this.state.module.title}/>
+                    <button className= "btn btn-primary btn-block"
+                            onClick={this.createModule}>
+                        <i className="fa fa-plus"></i>
+                    </button>
+                    <ul className="list-group">
+                        {this.renderListOfModules()}
+                    </ul>
                 </div>
             );
     }
