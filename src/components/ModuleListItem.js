@@ -1,5 +1,4 @@
 import React from 'react';
-import '../.../bootstrap/.../bootstrap.css';
 
 export default class ModuleListItem
     extends React.Component {
@@ -7,6 +6,8 @@ export default class ModuleListItem
         return (
             <li className="list-group-item">
                 Module 1
+                <i className="fa fa-trash"></i>
+                <i className="fa fa-pencil"></i>
             </li>
         );
     }
