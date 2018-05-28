@@ -10,8 +10,6 @@ class CourseManager extends Component {
             <div className="container-fluid">
                 <h1>Course Manager</h1>
                 <CourseEditor/>
-                <LessonTabs/>
-                <ModuleList/>
                 <div className="card-deck">
                     <CourseCard/>
                     <CourseCard/>
