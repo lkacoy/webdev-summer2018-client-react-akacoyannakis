@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import CourseCard from './CourseCard';
+import CourseCard from '../components/CourseCard';
 
 class CourseManager extends Component {
     render() {
