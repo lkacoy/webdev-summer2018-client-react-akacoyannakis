@@ -9,8 +9,9 @@ import ModuleList2 from './containers/ModuleList2'
 
 ReactDOM.render(
  <div className="container-fluid">
-    <ModuleList2/>
-    <Stateless message="this is a stateless component"/>
+    <CourseManager/>
+/*    <ModuleList2/>
+    <Stateless message="this is a stateless component"/>*/
  </div>,
  document.getElementById('root')
 );
