@@ -1,5 +1,6 @@
-import React from 'react';
-import ModuleListItem from '../components/ModuleListItem';
+import React from 'react'
+import ModuleListItem from '../components/ModuleListItem'
+import ModuleService from '../services/ModuleService'
 
 export default class ModuleList
     extends React.Component {
@@ -20,6 +21,8 @@ export default class ModuleList
             this.createModule = this.createModule.bind(this);
             this.titleChanged = this.titleChanged.bind(this);
             this.setCourseId = this.setCourseId.bind(this);
+            this.setModuleTitle = this.setModuleTitle.bind(this);
+            this.moduleService = ModuleService.instance;
         }
 
         titleChanged(event) {
@@ -28,7 +31,16 @@ export default class ModuleList
 
         createModule() {
             console.log(this.state.module);
+            this.moduleService.createModule(this.props.courseId,
+                                            this.state.module);
         }
+
+        setModuleTitle(event) {
+           this.setState({module: {
+                   title: event.target.value
+            }})
+        }
+
 
         setCourseId(courseId) {
             this.setState({courseId: courseId});
