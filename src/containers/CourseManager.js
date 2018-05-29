@@ -16,19 +16,24 @@ class CourseManager extends Component {
                     <Route path="/courses"
                         component={CourseList}>
                     </Route>
-                    <Route path="/examples">
-                        <div>
-                            <div className="card-deck">
-                                <CourseCard/>
-                                <CourseCard/>
-                                <CourseCard/>
-                                <CourseCard/>
-                            </div>
-                        </div>
-                    </Route>
                     <Route path="/course/:courseId/edit"
                         component={CourseEditor}>
                     </Route>
+
+                            {/*<Route path="/examples">*/}
+                                {/*<div>*/}
+                                  {/*<div className="card-deck">*/}
+                                    {/*<CourseCard/>*/}
+                                    {/*<CourseCard/>*/}
+                                    {/*<CourseCard/>*/}
+                                    {/*<CourseCard/>*/}
+                                  {/*</div>*/}
+                                  {/*<CourseEditor/>*/}
+                                  {/*<br/>*/}
+                                  {/*<LessonTabs/>*/}
+                                  {/*<ModuleList/>*/}
+                                {/*</div>*/}
+                              {/*</Route>*/}
                 </div>
             </Router>
         )
