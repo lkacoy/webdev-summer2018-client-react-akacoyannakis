@@ -6,7 +6,13 @@ class CourseList extends React.Component {
    }
    render() {
        return (
-           <h2>Course List</h2>
+           <div>
+             <h2>Course List</h2>
+             <table className="table">
+               <thead><tr><th>Title</th></tr></thead>
+               <tbody><tr><td>Course Row</td></tr></tbody>
+             </table>
+           </div>
        )
    }
 }
