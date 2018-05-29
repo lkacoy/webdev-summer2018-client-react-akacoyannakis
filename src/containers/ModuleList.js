@@ -7,21 +7,20 @@ export default class ModuleList
         constructor(props) {
             super(props);
             this.state = {
-                courseId: '',
-                module: {title: ''},
-                modules: [
-                    {title: 'Module 1 - jQuery', id: 123},
-                    {title: 'Module 2 - React', id: 234},
-                    {title: 'Module 3 - Redux', id: 345},
-                    {title: 'Module 4 - Angular', id: 456},
-                    {title: 'Module 5 - Node.js', id: 567},
-                    {title: 'Module 6 - MongoDB', id: 678}
-                ]
-            };
+                  courseId: '',
+                  module: { title: '' },
+                  modules: [
+                    {title: 'Module 1', id: 123},
+                    {title: 'Module 2', id: 234},
+                    {title: 'Module 3', id: 345},
+                    {title: 'Module 4', id: 456},
+                    {title: 'Module 5', id: 567},
+                    {title: 'Module 6', id: 678}
+                  ]
+                };
             this.createModule = this.createModule.bind(this);
             this.titleChanged = this.titleChanged.bind(this);
             this.setCourseId = this.setCourseId.bind(this);
-            this.setModuleTitle = this.setModuleTitle.bind(this);
             this.moduleService = ModuleService.instance;
         }
 
@@ -53,7 +52,7 @@ export default class ModuleList
                         title={module.title} key={module.id}/>
                   });
                   return modules;
-                }
+        }
 
         render() {
             return (
@@ -78,7 +77,19 @@ export default class ModuleList
            this.setCourseId(this.props.courseId);
         }
         componentWillReceiveProps(newProps){
-           this.setCourseId(newProps.courseId);
+           this.findAllModulesForCourse(newProps.courseId)
         }
+
+        findAllModulesForCourse(courseId) {
+           this.moduleService
+              .findAllModulesForCourse(courseId)
+              .then((modules) => {this.setModules(modules)});
+        }
+
+        setModules(modules) {
+           this.setState({modules: modules})
+        }
+
+
 
 }
