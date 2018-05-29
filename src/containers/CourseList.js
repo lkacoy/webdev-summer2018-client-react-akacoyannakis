@@ -15,9 +15,7 @@ class CourseList extends React.Component {
              <table className="table">
                <thead><tr><th>Title</th></tr></thead>
                <tbody>
-                     <CourseRow/>
-                     <CourseRow/>
-                     <CourseRow/>
+                     {this.renderCourseRows()}
                </tbody>
              </table>
            </div>
@@ -32,8 +30,13 @@ class CourseList extends React.Component {
    }
 
    renderCourseRows() {
+      let courses = this.state.courses.map(
+        function (course) {
+            return <CourseRow/>
+        }
+      )
       return (
-          <tr><td>Course Row</td></tr>
+          courses
       )
    }
 
