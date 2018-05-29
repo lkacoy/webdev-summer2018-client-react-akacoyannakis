@@ -7,12 +7,19 @@ class CourseRow extends React.Component {
     }
    render() {
        return (
-           <tr><td>
-            <Link to=
-                {`/course/${this.props.course.id}/edit`}>
-                   {this.props.course.title}
-                </Link>
-            </td></tr>
+           <tr>
+                <td>
+                    <Link to={`/course/${this.props.course.id}/edit`}>
+                        {this.props.course.title}
+                    </Link>
+                </td>
+                <td>
+                    <button onClick={() =>
+                           {this.props.course.delete(this.props.course.id)}}>
+                           Delete
+                    </button>
+                </td>
+           </tr>
        )
    }
 }

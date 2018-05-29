@@ -9,6 +9,7 @@ class CourseList extends React.Component {
        this.state = {courses: []};
        this.titleChanged = this.titleChanged.bind(this);
        this.createCourse = this.createCourse.bind(this);
+       this.deleteCourse = this.deleteCourse.bind(this);
    }
    render() {
        return (
@@ -65,6 +66,10 @@ class CourseList extends React.Component {
    createCourse() {
         this.courseService.createCourse(this.state.course)
             .then(() => {this.findAllCourses(); });
+   }
+
+   deleteCourse(key) {
+           this.courseService.deleteCourse(key);
    }
 }
 export default CourseList;
