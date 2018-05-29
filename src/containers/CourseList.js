@@ -32,7 +32,7 @@ class CourseList extends React.Component {
    renderCourseRows() {
       let courses = this.state.courses.map(
         function (course) {
-            return <CourseRow course={course}/>
+            return <CourseRow key={course.id} course={course}/>
         }
       )
       return (
