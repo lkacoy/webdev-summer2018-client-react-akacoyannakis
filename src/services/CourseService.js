@@ -43,8 +43,17 @@ class CourseService {
 
    }
 
-   updateCourse() {
-
+   updateCourse(course) {
+        return fetch(COURSE_API_URL + '/' + course,
+            {
+                method: 'PUT',
+                body: JSON.stringify(course),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (response) {
+                return response.json();
+        })
    }
 
    componentDidMount() {

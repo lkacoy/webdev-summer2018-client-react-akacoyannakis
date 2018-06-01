@@ -10,20 +10,23 @@ class CourseList extends React.Component {
        this.titleChanged = this.titleChanged.bind(this);
        this.createCourse = this.createCourse.bind(this);
        this.deleteCourse = this.deleteCourse.bind(this);
+       this.updateCourse = this.updateCourse.bind(this);
    }
    render() {
        return (
            <div>
-             <h2>Course List</h2>
+              <form className="form-control">
+                  <input id="titleFld"
+                              onChange={this.titleChanged}
+                              placeholder="cs101"/>
+               <button onClick={this.createCourse} className="btn btn-primary">Add</button>
+              </form>
              <table className="table">
                <thead>
-                   <tr><th>Title</th></tr>
                    <tr>
-                       <th><input id="titleFld"
-                                  className="form-control"
-                                  onChange={this.titleChanged}
-                                  placeholder="cs101"/></th>
-                       <th><button onClick={this.createCourse} className="btn btn-primary">Add</button></th>
+                       <th>Title</th>
+                       <th>Owned By</th>
+                       <th>Modified Date</th>
                    </tr>
                </thead>
                <tbody>
@@ -46,11 +49,10 @@ class CourseList extends React.Component {
    }
 
    renderCourseRows() {
-      let courses = this.state.courses.map(
-        function (course) {
-            return <CourseRow key={course.id} course={course} delete={this.deleteCourse}/>
-        }
-      )
+      let courses = this.state.courses.map(course => {
+              return <CourseRow key={course.id} course={course} delete={this.deleteCourse}/>
+          }
+      );
       return (
           courses
       )
@@ -70,6 +72,10 @@ class CourseList extends React.Component {
 
    deleteCourse(courseId) {
            this.courseService.deleteCourse(courseId);
+   }
+
+   updateCourse(course) {
+       this.courseService.updateCourse(course);
    }
 }
 export default CourseList;

@@ -13,7 +13,17 @@ class CourseRow extends React.Component {
                         {this.props.course.title}
                     </Link>
                 </td>
+               <td>
+                   {this.props.course.ownedBy}
+               </td>
+               <td>
+                   {this.props.course.modified}
+               </td>
                 <td>
+{/*                    <button onClick={() =>
+                    {this.props.edit(this.props.course)}}>
+                        Edit
+                    </button>*/}
                     <button onClick={() =>
                            {this.props.delete(this.props.course.id)}}>
                            Delete
