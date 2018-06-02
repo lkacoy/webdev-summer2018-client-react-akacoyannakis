@@ -14,7 +14,7 @@ class CourseManager extends Component {
                                 aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
-                        <h1>Course Manager</h1>
+                        <h1 className="text-white">Course Manager</h1>
 
                     </nav>
                     <Route path="/courses" component={CourseList}></Route>
