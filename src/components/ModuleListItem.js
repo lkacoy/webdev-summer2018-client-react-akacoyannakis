@@ -10,7 +10,7 @@ export default class ModuleListItem
     render() {
         return (
             <li className="list-group-item">
-                Module {this.props.id} - {this.props.title}
+                Module {this.props.module.id} - {this.props.module.title}
                 <span className="float-right">
                     <span onClick={() =>
                     {this.props.delete(this.props.course.id, this.props.module.id)}}><i className="fa fa-trash"></i></span>
