@@ -42,8 +42,8 @@ export default class ModuleList
 
         renderListOfModules() {
                   let modules = this.state.modules.map(module =>{
-                    return <ModuleListItem
-                        module={module} key={module.id} update={this.updateModule} delete={this.deleteModule}/>
+                    return <ModuleListItem module={module} key={module.id} courseId={this.props.courseId}
+                                           update={this.updateModule} delete={this.deleteModule}/>
                   });
                   return (modules);
         }
@@ -89,7 +89,7 @@ export default class ModuleList
         }
 
         deleteModule(courseId, moduleId) {
-            this.moduleService.deleteCourse(courseId, moduleId).then(() => {this.findAllModulesForCourse(courseId); });
+            this.moduleService.deleteModule(courseId, moduleId).then(() => {this.findAllModulesForCourse(courseId); });
         }
 
 }
