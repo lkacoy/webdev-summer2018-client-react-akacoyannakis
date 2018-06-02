@@ -20,10 +20,6 @@ class CourseRow extends React.Component {
                    {this.props.course.modified}
                </td>
                 <td>
-{/*                    <button onClick={() =>
-                    {this.props.edit(this.props.course)}}>
-                        Edit
-                    </button>*/}
                     <span onClick={() =>
                            {this.props.delete(this.props.course.id)}}>
                         <i className="fa fa-trash"></i>
