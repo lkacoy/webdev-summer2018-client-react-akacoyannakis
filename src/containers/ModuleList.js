@@ -8,7 +8,7 @@ export default class ModuleList
             super(props);
             this.state = {
                   courseId: '',
-                  module: { title: '' },
+                  module: { title: '', id: '' },
                   modules: []
                 };
             this.createModule = this.createModule.bind(this);
@@ -41,11 +41,11 @@ export default class ModuleList
         }
 
         renderListOfModules() {
-                  let modules = this.state.modules.map(function(module){
+                  let modules = this.state.modules.map(module =>{
                     return <ModuleListItem
-                        title={module.title} key={module.id}/>
+                        title={module.title} key={module.id} update={this.updateModule} delete={this.deleteModule}/>
                   });
-                  return modules;
+                  return (modules);
         }
 
         render() {
