@@ -8,12 +8,6 @@ class CourseManager extends Component {
         return (
             <Router>
                 <div className="pos-f-t">
-{/*                    <div className="collapse" id="navbarToggleExternalContent">
-                        <div className="bg-dark p-4">
-                            <h4 className="text-white">Collapsed content</h4>
-                            <span className="text-muted">Toggleable via the navbar brand.</span>
-                        </div>
-                    </div>*/}
                     <nav className="navbar navbar-dark bg-primary">
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
@@ -24,7 +18,7 @@ class CourseManager extends Component {
 
                     </nav>
                     <Route path="/courses" component={CourseList}></Route>
-                    <Route path="/course/:courseId/edit"component={CourseEditor}></Route>
+                    <Route path="/course/:courseId/edit" component={CourseEditor}></Route>
                 </div>
 
             </Router>
