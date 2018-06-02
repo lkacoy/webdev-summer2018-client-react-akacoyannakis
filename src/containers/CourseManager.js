@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import CourseEditor from './CourseEditor'
+import ModuleEditor from './ModuleEditor'
 import CourseList from './CourseList'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
@@ -18,7 +18,7 @@ class CourseManager extends Component {
 
                     </nav>
                     <Route path="/courses" component={CourseList}></Route>
-                    <Route path="/course/:courseId/edit" component={CourseEditor}></Route>
+                    <Route path="/course/:courseId/edit" component={ModuleEditor}></Route>
                 </div>
 
             </Router>

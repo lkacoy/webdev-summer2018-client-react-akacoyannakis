@@ -2,7 +2,7 @@ import React from 'react';
 import ModuleList from './ModuleList';
 import LessonTabs from './LessonTabs';
 
-export default class CourseEditor extends React.Component {
+export default class ModuleEditor extends React.Component {
 
     constructor(props) {
         super(props);
