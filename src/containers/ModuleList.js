@@ -16,6 +16,7 @@ export default class ModuleList
             this.deleteModule = this.deleteModule.bind(this);
             this.titleChanged = this.titleChanged.bind(this);
             this.setCourseId = this.setCourseId.bind(this);
+            this.findModuleById = this.findModuleById.bind(this);
             this.moduleService = ModuleService.instance;
         }
 
@@ -43,7 +44,8 @@ export default class ModuleList
         renderListOfModules() {
                   let modules = this.state.modules.map(module =>{
                     return <ModuleListItem module={module} key={module.id} courseId={this.props.courseId}
-                                           update={this.updateModule} delete={this.deleteModule}/>
+                                           update={this.updateModule} delete={this.deleteModule}
+                                           findModuleById={this.findModuleById}/>
                   });
                   return (modules);
         }
@@ -89,7 +91,12 @@ export default class ModuleList
         }
 
         deleteModule(courseId, moduleId) {
+            if (window.confirm('Delete module?'))
             this.moduleService.deleteModule(courseId, moduleId).then(() => {this.findAllModulesForCourse(courseId); });
+        }
+
+        findModuleById(moduleId) {
+             this.moduleService.findModuleById(moduleId);
         }
 
 }
