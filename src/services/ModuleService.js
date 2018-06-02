@@ -27,6 +27,14 @@ export default class ModuleService {
     { return response.json(); })
   }
 
+  deleteModule(courseId, moduleId) {
+
+  }
+
+  updateModule(courseId, moduleId) {
+
+  }
+
   static get instance() {
     if(!this[_singleton])
       this[_singleton] = new ModuleService(_singleton);

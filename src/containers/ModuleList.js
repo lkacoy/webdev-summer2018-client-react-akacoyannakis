@@ -12,6 +12,8 @@ export default class ModuleList
                   modules: []
                 };
             this.createModule = this.createModule.bind(this);
+            this.updateModule = this.updateModule.bind(this);
+            this.deleteModule = this.deleteModule.bind(this);
             this.titleChanged = this.titleChanged.bind(this);
             this.setCourseId = this.setCourseId.bind(this);
             this.moduleService = ModuleService.instance;
@@ -82,6 +84,12 @@ export default class ModuleList
            this.setState({modules: modules})
         }
 
+        updateModule(courseId, moduleId) {
+            this.moduleService.updateModule(courseId, moduleId);
+        }
 
+        deleteModule(courseId, moduleId) {
+            this.moduleService.deleteCourse(courseId, moduleId);
+        }
 
 }
