@@ -31,11 +31,11 @@ export default class LessonTabs extends React.Component {
       return(
           <ul className="nav nav-tabs">
               { this.renderLessons()}
-              <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/add`}>
+             {/* <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/add`}>*/}
               <li className="nav-item" key="new">
-                  Add New Lesson
+                  <i className="fa fa-plus"></i>
               </li>
-              </Link>
+             {/* </Link>*/}
           </ul>
       );
      }
