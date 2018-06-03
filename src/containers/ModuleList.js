@@ -8,7 +8,6 @@ export default class ModuleList
             super(props);
             this.state = {
                 courseId: '',
-                isSelected: false,
                 module: { title: '', id: '' },
                   modules: []
                 };
@@ -39,7 +38,7 @@ export default class ModuleList
                   let modules = this.state.modules.map(module =>{
                     return <ModuleListItem module={module} key={module.id} courseId={this.props.courseId}
                                            update={this.updateModule} delete={this.deleteModule}
-                                           findModuleById={this.findModuleById} isSelected={this.state.isSelected}/>
+                                           findModuleById={this.findModuleById}/>
                   });
                   return (modules);
         }
@@ -89,9 +88,7 @@ export default class ModuleList
         }
 
         findModuleById(moduleId) {
-             this.moduleService.findModuleById(moduleId).then(() => {
-                 this.setState({isSelected: true});
-             });
+             this.moduleService.findModuleById(moduleId);
         }
 
 }
