@@ -37,8 +37,6 @@ export default class ModuleList
 
         renderListOfModules() {
                   let modules = this.state.modules.map(module =>{
-                      console.debug(this.state.isSelected);
-                      console.debug("in render");
                     return <ModuleListItem module={module} key={module.id} courseId={this.props.courseId}
                                            update={this.updateModule} delete={this.deleteModule}
                                            findModuleById={this.findModuleById} isSelected={this.state.isSelected}/>
