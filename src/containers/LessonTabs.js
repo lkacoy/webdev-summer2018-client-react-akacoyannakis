@@ -45,7 +45,8 @@ export default class LessonTabs extends React.Component {
               </li>
              </Link>
           </ul>
-              <LessonForm lesson={this.props.lesson} courseId={this.props.courseId} moduleId={this.props.moduleId}/>
+              {this.determineLessonForm()}
+              {/*<LessonForm lesson={this.props.lesson} courseId={this.props.courseId} moduleId={this.props.moduleId}/>*/}
           </div>
       );
      }
@@ -91,8 +92,9 @@ export default class LessonTabs extends React.Component {
     }
 
     determineLessonForm() {
-        if (this.state.lesson) {
-            return <LessonForm deleteLesson={this.deleteLesson}/>
+        if (this.state.lesson && this.state.lessonId !== 'add') {
+            return <LessonForm lesson={this.props.lesson} courseId={this.props.courseId}
+                               moduleId={this.props.moduleId} deleteLesson={this.deleteLesson}/>
         } else {
             return <LessonFormAdd />
         }
