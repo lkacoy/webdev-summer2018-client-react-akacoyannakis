@@ -1,6 +1,7 @@
 import React from 'react';
 import LessonService from "../services/LessonService";
 import LessonTabItem from "../components/LessonTabItem";
+import LessonForm from "../components/LessonForm";
 import {Link} from 'react-router-dom'
 
 export default class LessonTabs extends React.Component {
@@ -29,14 +30,17 @@ export default class LessonTabs extends React.Component {
 
     render() {
       return(
+          <div>
           <ul className="nav nav-tabs">
               { this.renderLessons()}
-             {/* <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/add`}>*/}
+             <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/add`}>
               <li className="nav-item" key="new">
                   <i className="fa fa-plus"></i>
               </li>
-             {/* </Link>*/}
+             </Link>
           </ul>
+          <LessonForm />
+          </div>
       );
      }
 
