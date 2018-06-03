@@ -2,6 +2,7 @@ import React from 'react';
 import LessonService from "../services/LessonService";
 import LessonTabItem from "../components/LessonTabItem";
 import LessonForm from "../components/LessonForm";
+import LessonFormAdd from "../components/LessonFormAdd";
 import {Link} from 'react-router-dom'
 
 export default class LessonTabs extends React.Component {
@@ -21,6 +22,7 @@ export default class LessonTabs extends React.Component {
     componentDidMount() {
         this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
+        this.setLessonId(this.props.lessonId);
     }
     componentWillReceiveProps(newProps){
         if (newProps.moduleId) {
@@ -39,14 +41,18 @@ export default class LessonTabs extends React.Component {
               </li>
              </Link>
           </ul>
-          <LessonForm />
+              <LessonForm lesson={this.props.lesson} courseId={this.props.courseId} moduleId={this.props.moduleId}/>
           </div>
       );
      }
 
      renderLessons() {
             let lessons = this.state.lessons.map((lesson, index) => {
-                return <LessonTabItem key={lesson.id} courseId={this.props.courseId} moduleId={this.props.moduleId} lesson={lesson}
+                return <LessonTabItem key={lesson.id}
+                                      courseId={this.props.courseId}
+                                      moduleId={this.props.moduleId}
+                                      lesson={lesson}
+                                      determineLessonForm={this.determineLessonForm}
                         index={index}/>
             });
             return (lessons);
@@ -69,9 +75,21 @@ export default class LessonTabs extends React.Component {
         this.setState({moduleId: moduleId});
     }
 
+    setLessonId(lessonId) {
+        this.setState({lessonId: lessonId});
+    }
+
     createLesson() {
         console.log(this.state.lesson);
         this.lessonService.createLesson(this.props.courseId, this.props.moduleId, this.state.lesson)
             .then(() => {this.findAllLessonsForModule(this.props.courseId, this.props.moduleId); });
+    }
+
+    determineLessonForm() {
+        if (this.state.lessonId) {
+            return <LessonForm />
+        } else {
+            return <LessonFormAdd />
+        }
     }
 }

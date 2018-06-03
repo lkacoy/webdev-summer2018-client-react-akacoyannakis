@@ -9,8 +9,8 @@ export default class ModuleList
             this.state = {
                 courseId: '',
                 module: { title: '', id: '' },
-                  modules: []
-                };
+                modules: []
+            };
             this.createModule = this.createModule.bind(this);
             this.updateModule = this.updateModule.bind(this);
             this.deleteModule = this.deleteModule.bind(this);
