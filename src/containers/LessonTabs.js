@@ -105,7 +105,6 @@ export default class LessonTabs extends React.Component {
     }
 
     changeSelected(lessonId, selected) {
-console.log(this.state.selectedLesson);
         var selections = [];
         selections[lessonId] = selected;
         this.setState({
