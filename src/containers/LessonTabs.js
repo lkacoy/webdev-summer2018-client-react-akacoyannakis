@@ -26,14 +26,19 @@ export default class LessonTabs extends React.Component {
       return(
           <ul className="nav nav-tabs">
               {this.renderLessons()}
+              <li className="nav-item" key="new">
+                  <a className="nav-link active"
+                     href="">Add New Lesson</a>
+              </li>
           </ul>
       );
      }
 
      renderLessons() {
          let lessons = this.state.lessons.map(lesson =>{
-             return <li className="nav-item" key={lesson.id}><a className="nav-link active"
-                                                href="">{lesson.title}</a></li>
+             return <li className="nav-item" key={lesson.id}>
+                        <a className="nav-link active" href="">{lesson.title}</a>
+                    </li>
          });
          return (lessons);
      }
