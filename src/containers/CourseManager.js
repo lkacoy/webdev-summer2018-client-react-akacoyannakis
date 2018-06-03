@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import CourseEditor from './CourseEditor'
 import CourseList from './CourseList'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 class CourseManager extends Component {
     render() {
@@ -17,8 +17,12 @@ class CourseManager extends Component {
                         <h1 className="text-white">Course Manager</h1>
 
                     </nav>
-                    <Route path="/courses" component={CourseList}></Route>
-                    <Route path="/course/:courseId/" component={CourseEditor}></Route>
+                    <Switch>
+                        <Route exact path="/" component={CourseList}></Route>
+                        <Route path="/courses" component={CourseList}></Route>
+                        <Route path="/course/:courseId/" component={CourseEditor}></Route>
+                        <Route path="/course/:courseId/module/:moduleId" component={CourseEditor}></Route>
+                    </Switch>
                 </div>
 
             </Router>
