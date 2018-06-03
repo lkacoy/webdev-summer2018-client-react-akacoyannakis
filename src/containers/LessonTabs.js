@@ -47,7 +47,6 @@ export default class LessonTabs extends React.Component {
              </Link>
           </ul>
               {this.determineLessonForm()}
-              {/*<LessonForm lesson={this.props.lesson} courseId={this.props.courseId} moduleId={this.props.moduleId}/>*/}
           </div>
       );
      }
