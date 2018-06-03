@@ -1,6 +1,7 @@
 import React from 'react';
 import ModuleList from './ModuleList';
 import LessonTabs from './LessonTabs';
+import LessonForm from './LessonForm';
 
 export default class CourseEditor extends React.Component {
 
@@ -37,6 +38,7 @@ export default class CourseEditor extends React.Component {
                     </div>
                     <div className="col-8">
                         <LessonTabs courseId={this.state.courseId} moduleId={this.props.match.params.moduleId}/>
+                        <LessonForm />
                     </div>
                 </div>
             </div>
