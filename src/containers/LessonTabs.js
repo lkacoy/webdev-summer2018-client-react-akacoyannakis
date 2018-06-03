@@ -7,50 +7,52 @@ export default class LessonTabs extends React.Component {
         super(props);
         this.state = {
             courseId: '',
-            module: { title: '', id: '' },
+            moduleId: { title: '', id: '' },
             lessons: []
         }
+        this.findAllLessonsForModule = this.findAllLessonsForModule.bind(this);
         this.lessonService = LessonService.instance;
     }
 
     componentDidMount() {
         this.setCourseId(this.props.courseId);
-        this.setModuleId(this.props.module);
+        this.setModuleId(this.props.moduleId);
     }
     componentWillReceiveProps(newProps){
-        this.findAllLessonsForModule(newProps.courseId, newProps.module);
-        console.log(newProps.module);
+        this.findAllLessonsForModule(newProps.courseId, newProps.moduleId);
     }
 
     render() {
       return(
           <ul className="nav nav-tabs">
               {this.renderLessons()}
-               {/*<li className="nav-item"><a className="nav-link active"
-                    href="">Active Tab</a></li>
-               <li className="nav-item"><a className="nav-link"
-                    href="">Another Tab</a></li>*/}
           </ul>
       );
      }
 
      renderLessons() {
          let lessons = this.state.lessons.map(lesson =>{
-             return <li className="nav-item"><a className="nav-link active"
+             return <li className="nav-item" key={lesson.id}><a className="nav-link active"
                                                 href="">{lesson.title}</a></li>
          });
+         console.log(lessons);
          return (lessons);
      }
 
      findAllLessonsForModule(courseId, moduleId) {
-        this.lessonService.findAllLessonsForModule(courseId, moduleId);
+        this.lessonService.findAllLessonsForModule(courseId, moduleId)
+            .then((lessons) => {this.setLessons(lessons)});
      }
+
+    setLessons(lessons) {
+        this.setState({lessons: lessons});
+    }
 
     setCourseId(courseId) {
         this.setState({courseId: courseId});
     }
 
-    setModuleId(module) {
-        this.setState({module: module});
+    setModuleId(moduleId) {
+        this.setState({moduleId: moduleId});
     }
 }

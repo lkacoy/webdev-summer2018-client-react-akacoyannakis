@@ -36,7 +36,7 @@ export default class CourseEditor extends React.Component {
                         <ModuleList courseId={this.state.courseId}/>
                     </div>
                     <div className="col-8">
-                        <LessonTabs courseId={this.state.courseId} module={this.props.match.params.moduleId}/>
+                        <LessonTabs courseId={this.state.courseId} moduleId={this.props.match.params.moduleId}/>
                     </div>
                 </div>
             </div>
