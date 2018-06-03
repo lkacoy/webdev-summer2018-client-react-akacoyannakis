@@ -1,5 +1,6 @@
 import React from 'react';
 import LessonService from "../services/LessonService";
+import LessonTabItem from "../components/LessonTabItem";
 
 export default class LessonTabs extends React.Component {
 
@@ -8,7 +9,8 @@ export default class LessonTabs extends React.Component {
         this.state = {
             courseId: '',
             moduleId: { title: '', id: '' },
-            lessons: []
+            lessons: [],
+            lesson: {id: ''}
         }
         this.findAllLessonsForModule = this.findAllLessonsForModule.bind(this);
         this.lessonService = LessonService.instance;
@@ -27,7 +29,7 @@ export default class LessonTabs extends React.Component {
     render() {
       return(
           <ul className="nav nav-tabs">
-              {this.renderLessons()}
+              { this.renderLessons()}
               <li className="nav-item" key="new">
                   <a className="nav-link active"
                      href="">Add New Lesson</a>
@@ -37,14 +39,10 @@ export default class LessonTabs extends React.Component {
      }
 
      renderLessons() {
-        if (this.state.lessons.length > 0) {
             let lessons = this.state.lessons.map(lesson => {
-                return <li className="nav-item" key={lesson.id}>
-                    <a className="nav-link active" href="">{lesson.title}</a>
-                </li>
+                return <LessonTabItem key={lesson.id} courseId={this.props.courseId} moduleId={this.props.moduleId} lesson={lesson}/>
             });
             return (lessons);
-        }
      }
 
      findAllLessonsForModule(courseId, moduleId) {
