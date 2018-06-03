@@ -34,4 +34,11 @@ export default class LessonService {
        { return response.json(); })
      }
 
+   deleteLesson(courseId, moduleId, lessonId) {
+         return fetch(LESSON_API_URL + '/' + lessonId,
+             {
+                 method: 'DELETE'
+             })
+     }
+
 }

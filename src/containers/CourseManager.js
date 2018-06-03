@@ -21,7 +21,8 @@ class CourseManager extends Component {
                         <Route exact path="/" component={CourseList}></Route>
                         <Route path="/courses" component={CourseList}></Route>
                         <Route exact path="/course/:courseId/" component={CourseEditor}></Route>
-                        <Route path="/course/:courseId/module/:moduleId" component={CourseEditor}></Route>
+                        <Route exact path="/course/:courseId/module/:moduleId" component={CourseEditor}></Route>
+                        <Route exact path="/course/:courseId/module/:moduleId/lesson/:lessonId" component={CourseEditor}></Route>
                     </Switch>
                 </div>
 

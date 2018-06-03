@@ -16,6 +16,8 @@ export default class LessonTabs extends React.Component {
             lesson: {id: ''}
         }
         this.findAllLessonsForModule = this.findAllLessonsForModule.bind(this);
+        this.createLesson = this.createLesson.bind(this);
+        this.deleteLesson = this.deleteLesson.bind(this);
         this.lessonService = LessonService.instance;
     }
 
@@ -52,7 +54,7 @@ export default class LessonTabs extends React.Component {
                                       courseId={this.props.courseId}
                                       moduleId={this.props.moduleId}
                                       lesson={lesson}
-                                      determineLessonForm={this.determineLessonForm}
+                                      delete={this.deleteLesson}
                         index={index}/>
             });
             return (lessons);
@@ -87,9 +89,15 @@ export default class LessonTabs extends React.Component {
 
     determineLessonForm() {
         if (this.state.lessonId) {
-            return <LessonForm />
+            return <LessonForm deleteLesson={this.deleteLesson}/>
         } else {
             return <LessonFormAdd />
         }
+    }
+
+    deleteLesson(courseId, moduleId, lessonId) {
+        if (window.confirm('Delete lesson?'))
+            this.lessonService.deleteLesson(courseId, moduleId, lessonId)
+                .then(() => {this.findAllLessonsForModule(courseId, moduleId); });
     }
 }

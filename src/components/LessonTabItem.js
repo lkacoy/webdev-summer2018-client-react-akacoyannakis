@@ -13,23 +13,14 @@ export default class LessonTabItem extends React.Component {
 
     }
 
-    componentDidMount() {
-        this.setLessonId(this.props.lessonId);
-    }
-    componentWillReceiveProps(newProps){
-        this.setLessonId(newProps.match.params.lessonId);
-    }
-
-    setLessonId(lessonId) {
-        this.setState({lessonId: lessonId});
-    }
-
 
     render() {
         return (
             <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}>
-                <li className={this.state.selected ? 'nav-item active mr-4' : 'nav-item mr-4'} onClick={this.props.determineLessonForm}>
-                    {this.props.lesson.title}
+                <li className={this.state.selected ? 'nav-item active mr-4' : 'nav-item mr-4'}>
+                    {this.props.lesson.title} <span className="mr-2" onClick={() =>
+                {this.props.delete(this.props.courseId, this.props.moduleId, this.props.lesson.id)}}>
+                    <i className="fa fa-trash"></i></span>
                 </li>
             </Link>
         );
