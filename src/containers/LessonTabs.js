@@ -35,7 +35,6 @@ export default class LessonTabs extends React.Component {
              return <li className="nav-item" key={lesson.id}><a className="nav-link active"
                                                 href="">{lesson.title}</a></li>
          });
-         console.log(lessons);
          return (lessons);
      }
 
