@@ -19,7 +19,9 @@ export default class LessonTabs extends React.Component {
         this.setModuleId(this.props.moduleId);
     }
     componentWillReceiveProps(newProps){
-        this.findAllLessonsForModule(newProps.courseId, newProps.moduleId);
+        if (newProps.moduleId) {
+            this.findAllLessonsForModule(newProps.courseId, newProps.moduleId);
+        }
     }
 
     render() {
@@ -35,12 +37,14 @@ export default class LessonTabs extends React.Component {
      }
 
      renderLessons() {
-         let lessons = this.state.lessons.map(lesson =>{
-             return <li className="nav-item" key={lesson.id}>
-                        <a className="nav-link active" href="">{lesson.title}</a>
-                    </li>
-         });
-         return (lessons);
+        if (this.state.lessons.length > 0) {
+            let lessons = this.state.lessons.map(lesson => {
+                return <li className="nav-item" key={lesson.id}>
+                    <a className="nav-link active" href="">{lesson.title}</a>
+                </li>
+            });
+            return (lessons);
+        }
      }
 
      findAllLessonsForModule(courseId, moduleId) {
