@@ -6,15 +6,12 @@ export default class ModuleListItem
 
     constructor(props) {
         super(props);
-        this.state = {
-            selected: false
-        }
         this.changeSelected = this.changeSelected.bind(this);
     }
     render() {
         return (
             <Link to={`/course/${this.props.courseId}/module/${this.props.module.id}`}>
-            <li className={this.state.selected ? 'list-group-item active' : 'list-group-item'} onClick={this.changeSelected}>
+            <li className={this.props.selected ? 'list-group-item active' : 'list-group-item'} onClick={this.changeSelected}>
                 {this.props.module.title}
                 <span className="float-right">
                         <span className="mr-2" onClick={() =>
@@ -27,8 +24,6 @@ export default class ModuleListItem
         );
     }
     changeSelected() {
-        const state = this.state.selected;
-        this.setState({selected: !state});
-        console.log("newState" +this.state.selected);
+        this.props.changeSelected(this.props.module.id, !this.props.selected);
     }
 }

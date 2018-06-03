@@ -9,7 +9,8 @@ export default class ModuleList
             this.state = {
                 courseId: '',
                 module: { title: '', id: '' },
-                modules: []
+                modules: [],
+                selectedId: []
             };
             this.createModule = this.createModule.bind(this);
             this.updateModule = this.updateModule.bind(this);
@@ -17,6 +18,7 @@ export default class ModuleList
             this.titleChanged = this.titleChanged.bind(this);
             this.setCourseId = this.setCourseId.bind(this);
             this.findModuleById = this.findModuleById.bind(this);
+            this.changeSelected = this.changeSelected.bind(this);
             this.moduleService = ModuleService.instance;
         }
 
@@ -38,6 +40,7 @@ export default class ModuleList
                   let modules = this.state.modules.map(module =>{
                     return <ModuleListItem module={module} key={module.id} courseId={this.props.courseId}
                                            update={this.updateModule} delete={this.deleteModule}
+                                           selected={this.state.selectedId[module.id]} changeSelected={this.changeSelected}
                                            findModuleById={this.findModuleById}/>
                   });
                   return (modules);
@@ -90,5 +93,14 @@ export default class ModuleList
         findModuleById(moduleId) {
              this.moduleService.findModuleById(moduleId);
         }
+
+    changeSelected(moduleId, selected) {
+           
+        var selections = [];
+        selections[moduleId] = selected;
+        this.setState({
+            selectedId: selections
+        })
+    }
 
 }
