@@ -7,8 +7,9 @@ export default class ModuleList
         constructor(props) {
             super(props);
             this.state = {
-                  courseId: '',
-                  module: { title: '', id: '' },
+                courseId: '',
+                isSelected: false,
+                module: { title: '', id: '' },
                   modules: []
                 };
             this.createModule = this.createModule.bind(this);
@@ -30,22 +31,17 @@ export default class ModuleList
                 .then(() => {this.findAllModulesForCourse(this.props.courseId); });
         }
 
-        setModuleTitle(event) {
-           this.setState({module: {
-                   title: event.target.value
-            }})
-        }
-
-
         setCourseId(courseId) {
             this.setState({courseId: courseId});
         }
 
         renderListOfModules() {
                   let modules = this.state.modules.map(module =>{
+                      console.debug(this.state.isSelected);
+                      console.debug("in render");
                     return <ModuleListItem module={module} key={module.id} courseId={this.props.courseId}
                                            update={this.updateModule} delete={this.deleteModule}
-                                           findModuleById={this.findModuleById}/>
+                                           findModuleById={this.findModuleById} isSelected={this.state.isSelected}/>
                   });
                   return (modules);
         }
@@ -53,7 +49,6 @@ export default class ModuleList
         render() {
             return (
                 <div>
-                    <h3>Module List for course: {this.state.courseId}</h3>
                     <input  onChange={this.titleChanged}
                         className="form-control"
                         placeholder="title"
@@ -96,7 +91,9 @@ export default class ModuleList
         }
 
         findModuleById(moduleId) {
-             this.moduleService.findModuleById(moduleId);
+             this.moduleService.findModuleById(moduleId).then(() => {
+                 this.setState({isSelected: true});
+             });
         }
 
 }
