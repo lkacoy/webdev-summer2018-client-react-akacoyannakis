@@ -41,8 +41,9 @@ export default class LessonTabs extends React.Component {
      }
 
      renderLessons() {
-            let lessons = this.state.lessons.map(lesson => {
-                return <LessonTabItem key={lesson.id} courseId={this.props.courseId} moduleId={this.props.moduleId} lesson={lesson}/>
+            let lessons = this.state.lessons.map((lesson, index) => {
+                return <LessonTabItem key={lesson.id} courseId={this.props.courseId} moduleId={this.props.moduleId} lesson={lesson}
+                        index={index}/>
             });
             return (lessons);
      }
@@ -62,5 +63,11 @@ export default class LessonTabs extends React.Component {
 
     setModuleId(moduleId) {
         this.setState({moduleId: moduleId});
+    }
+
+    createLesson() {
+        console.log(this.state.lesson);
+        this.lessonService.createLesson(this.props.courseId, this.props.moduleId, this.state.lesson)
+            .then(() => {this.findAllLessonsForModule(this.props.courseId, this.props.moduleId); });
     }
 }
