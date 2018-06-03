@@ -1,6 +1,7 @@
 import React from 'react';
 import LessonService from "../services/LessonService";
 import LessonTabItem from "../components/LessonTabItem";
+import {Link} from 'react-router-dom'
 
 export default class LessonTabs extends React.Component {
 
@@ -30,10 +31,11 @@ export default class LessonTabs extends React.Component {
       return(
           <ul className="nav nav-tabs">
               { this.renderLessons()}
+              <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/add`}>
               <li className="nav-item" key="new">
-                  <a className="nav-link active"
-                     href="">Add New Lesson</a>
+                  Add New Lesson
               </li>
+              </Link>
           </ul>
       );
      }
