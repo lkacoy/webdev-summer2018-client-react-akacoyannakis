@@ -6,7 +6,6 @@ export default class LessonTabItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            selected: false,
             lessonId : ''
         }
         this.changeSelected = this.changeSelected.bind(this);
@@ -17,7 +16,7 @@ export default class LessonTabItem extends React.Component {
     render() {
         return (
             <Link to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}>
-                <li className={this.state.selected ? 'nav-item active mr-4' : 'nav-item mr-4'}>
+                <li className={this.props.selected ? 'nav-item active mr-4' : 'nav-item mr-4'} onClick={this.changeSelected}>
                     {this.props.lesson.title} <span className="mr-2" onClick={() =>
                 {this.props.delete(this.props.courseId, this.props.moduleId, this.props.lesson.id)}}>
                     <i className="fa fa-trash"></i></span>
@@ -25,9 +24,8 @@ export default class LessonTabItem extends React.Component {
             </Link>
         );
     }
+
     changeSelected() {
-        const state = this.state.selected;
-        this.setState({selected: !state});
-        console.log("newState" +this.state.selected);
+        this.props.changeSelected(this.props.lesson.id, !this.props.selected);
     }
 }

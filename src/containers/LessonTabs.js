@@ -13,11 +13,13 @@ export default class LessonTabs extends React.Component {
             courseId: '',
             moduleId: { title: '', id: '' },
             lessons: [],
-            lesson: {id: ''}
+            lesson: {id: ''},
+            selectedLesson: []
         }
         this.findAllLessonsForModule = this.findAllLessonsForModule.bind(this);
         this.createLesson = this.createLesson.bind(this);
         this.deleteLesson = this.deleteLesson.bind(this);
+        this.changeSelected = this.changeSelected.bind(this);
         this.lessonService = LessonService.instance;
     }
 
@@ -49,13 +51,14 @@ export default class LessonTabs extends React.Component {
      }
 
      renderLessons() {
-            let lessons = this.state.lessons.map((lesson, index) => {
+            let lessons = this.state.lessons.map(lesson => {
                 return <LessonTabItem key={lesson.id}
                                       courseId={this.props.courseId}
                                       moduleId={this.props.moduleId}
                                       lesson={lesson}
                                       delete={this.deleteLesson}
-                        index={index}/>
+                                      changeSelected={this.changeSelected}
+                                      selected={this.state.selectedLesson[lesson.id]}/>
             });
             return (lessons);
      }
@@ -88,7 +91,7 @@ export default class LessonTabs extends React.Component {
     }
 
     determineLessonForm() {
-        if (this.state.lessonId) {
+        if (this.state.lesson) {
             return <LessonForm deleteLesson={this.deleteLesson}/>
         } else {
             return <LessonFormAdd />
@@ -99,5 +102,14 @@ export default class LessonTabs extends React.Component {
         if (window.confirm('Delete lesson?'))
             this.lessonService.deleteLesson(courseId, moduleId, lessonId)
                 .then(() => {this.findAllLessonsForModule(courseId, moduleId); });
+    }
+
+    changeSelected(lessonId, selected) {
+console.log(this.state.selectedLesson);
+        var selections = [];
+        selections[lessonId] = selected;
+        this.setState({
+            selectedLesson: selections
+        })
     }
 }
