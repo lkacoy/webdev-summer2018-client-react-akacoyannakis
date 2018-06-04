@@ -1,7 +1,7 @@
 const MODULE_COURSE_API_URL =
-  'http://localhost:8080/api/course/CID/module';
+  'https://web2018-lexikacoyannakis.herokuapp.com/api/course/CID/module';
 const MODULE_API_URL =
-    'http://localhost:8080/api/module'
+    'https://web2018-lexikacoyannakis.herokuapp.com/api/module'
 
 let _singleton = Symbol();
 export default class ModuleService {

@@ -1,8 +1,8 @@
 let _singleton = Symbol();
 const LESSON_MODULE_API_URL =
-  'http://localhost:8080/api/course/CID/module/MID/lesson';
+  'https://web2018-lexikacoyannakis.herokuapp.com/api/course/CID/module/MID/lesson';
 const LESSON_API_URL =
-    'http://localhost:8080/api/lesson'
+    'https://web2018-lexikacoyannakis.herokuapp.com/api/lesson'
 
 export default class LessonService {
  constructor(singletonToken) {
