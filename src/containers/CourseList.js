@@ -66,6 +66,11 @@ class CourseList extends React.Component {
    }
 
    createCourse() {
+       if (this.state.course === undefined) {
+           this.state.course = {title: ''};
+           this.state.course.title = 'New Course';
+           console.log(this.state.course);
+       }
         this.courseService.createCourse(this.state.course)
             .then(() => {this.findAllCourses(); });
    }
