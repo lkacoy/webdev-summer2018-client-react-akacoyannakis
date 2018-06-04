@@ -24,6 +24,13 @@ export default class LessonService {
               })
    }
 
+   findLessonById(lessonId) {
+        return fetch(LESSON_API_URL + '/' + lessonId)
+            .then(function (response) {
+                return response.json();
+            })
+   }
+
    createLesson(courseId, moduleId, lesson) {
        return fetch(LESSON_MODULE_API_URL.replace('CID', courseId).replace('MID', moduleId),
          {
