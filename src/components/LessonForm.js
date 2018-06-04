@@ -45,6 +45,10 @@ export default class LessonForm extends React.Component {
                     </div>
             });
             return (topics);
+        } else {
+            return <div className="mb-2">
+                No topics available.
+            </div>
         }
     }
 
