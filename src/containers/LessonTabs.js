@@ -86,7 +86,7 @@ export default class LessonTabs extends React.Component {
     }
 
     createLesson(lesson) {
-        console.log(this.state.lesson);
+        console.log("hit create lesson");
         this.lessonService.createLesson(this.props.courseId, this.props.moduleId, lesson)
             .then(() => {this.findAllLessonsForModule(this.props.courseId, this.props.moduleId); });
     }
@@ -96,7 +96,7 @@ export default class LessonTabs extends React.Component {
             return <LessonForm lesson={this.props.lesson} courseId={this.props.courseId} lessonId={this.state.lessonId}
                                moduleId={this.props.moduleId} deleteLesson={this.deleteLesson}/>
         } else {
-            return <LessonFormAdd courseId={this.props.courseId} moduleId={this.props.moduleId} createLesson={this.createLesson} />
+            return <LessonFormAdd courseId={this.props.courseId} moduleId={this.props.moduleId} create={this.createLesson} />
         }
     }
 

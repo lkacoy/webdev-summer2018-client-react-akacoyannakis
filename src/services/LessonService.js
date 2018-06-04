@@ -27,7 +27,7 @@ export default class LessonService {
    createLesson(courseId, moduleId, lesson) {
        return fetch(LESSON_MODULE_API_URL.replace('CID', courseId).replace('MID', moduleId),
          {
-           body: JSON.stringify(module),
+           body: JSON.stringify(lesson),
            headers: { 'Content-Type': 'application/json' },
            method: 'POST'
          }).then(function (response)

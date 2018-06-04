@@ -42,19 +42,18 @@ export default class LessonFormAdd extends React.Component {
                     <span className="ml-2" onClick={this.handleAddTopics()}><i className="fa fa-plus"></i></span>
                 </div>
             </div>*/}
-            <button className= "btn btn-primary btn-block mt-4"
-                    onClick={this.props.createLesson(this.state.lesson)}>
+            <button className= "btn btn-primary btn-block mt-4" onClick={() => {this.props.create(this.state.lesson)}}>
                 <i className="fa fa-plus"></i>
             </button>
         </div>
     }
 
     handleRemoveTopics() {
-        var topics = this.state.lesson.topics;
+ /*       var topics = this.state.lesson.topics;
         topics[this.props.lesson.id] = this.state.lesson.topic;
         this.setState({
             lesson: {topics: topics}
-        });
+        });*/
     }
 
     handleAddTopics() {
