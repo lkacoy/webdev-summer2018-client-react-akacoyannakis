@@ -1,5 +1,6 @@
 import React from "react";
 import TopicService from "../services/TopicService";
+import TopicTabItem from "../components/TopicTabItem";
 
 export default class TopicTabs extends React.Component {
 
@@ -33,9 +34,8 @@ export default class TopicTabs extends React.Component {
     render() {
         if (this.state.topics && this.state.topics.length > 0) {
             let topics = this.state.topics.map(topic => {
-                return <div className="mb-2" key={topic.id}>
-                    {topic.title}
-                </div>
+                return <TopicTabItem key={topic.id}
+                                     topic={topic}/>
             });
             return (topics);
         } else {
@@ -45,10 +45,8 @@ export default class TopicTabs extends React.Component {
         }
     }
 
-
-
     findAllTopicsForLesson(lessonId) {
         console.log(lessonId);
-        this.topicService.findAllTopicsForLesson(lessonId);
+        this.topicService.findAllTopicsForLesson(lessonId).then((topics) => {this.setTopics(topics)});
     }
 }
