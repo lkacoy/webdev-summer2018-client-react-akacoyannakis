@@ -1,5 +1,6 @@
 import React from 'react';
 import LessonService from '../services/LessonService';
+import TopicTabs from "../containers/TopicTabs";
 
 export default class LessonForm extends React.Component {
 
@@ -8,7 +9,7 @@ export default class LessonForm extends React.Component {
         this.state = {
             lessonId: '',
             lesson: {id: '', title: ''}
-        }
+        };
         this.lessonService = LessonService.instance;
     }
 
@@ -33,27 +34,13 @@ export default class LessonForm extends React.Component {
         return <div className="mt-5">
             <h3>Lesson - {this.state.lesson.title}</h3>
             <h4 className="mt-2">Topics</h4>
-            {this.renderTopics()}
+            <TopicTabs lessonId={this.state.lessonId}/>
         </div>
-    }
-
-    renderTopics() {
-        if (this.state.lesson.topics && this.state.lesson.topics.length > 0) {
-            let topics = this.state.lesson.topics.map(topic => {
-                return <div className="mb-2" key={topic}>
-                        {topic}
-                    </div>
-            });
-            return (topics);
-        } else {
-            return <div className="mb-2">
-                No topics available.
-            </div>
-        }
     }
 
     findLessonById(lessonId) {
         this.lessonService.findLessonById(lessonId).then((lesson) => {this.setLesson(lesson)});
     }
+
 
 }
