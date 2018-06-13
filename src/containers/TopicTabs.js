@@ -32,10 +32,22 @@ export default class TopicTabs extends React.Component {
     }
 
     render() {
+        return (
+            <div className="row">
+                {this.renderListOfTopics()}
+            </div>
+        );
+    }
+
+    renderListOfTopics() {
         if (this.state.topics && this.state.topics.length > 0) {
             let topics = this.state.topics.map(topic => {
-                return <TopicTabItem key={topic.id}
-                                     topic={topic}/>
+                return (
+                    <ul className="nav nav-pills">
+                        <TopicTabItem key={topic.id}
+                                      topic={topic}/>
+                    </ul>
+                )
             });
             return (topics);
         } else {
