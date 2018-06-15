@@ -5,10 +5,11 @@ import WidgetContainer from '../components/widget'
 
 class WidgetList extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.props.findAllWidgets()
     }
     render() {
+        console.log(this.props);
         return(
             <div>
                 <h1>Widget List {this.props.widgets.length}</h1>
@@ -37,16 +38,16 @@ class WidgetList extends Component {
 const stateToPropertiesMapper = (state) => ({
     widgets: state.widgets,
     previewMode: state.preview
-})
+});
 const dispatcherToPropsMapper
     = dispatch => ({
     findAllWidgets: () => actions.findAllWidgets(dispatch),
     addWidget: () => actions.addWidget(dispatch),
     save: () => actions.save(dispatch),
     preview: () => actions.preview(dispatch)
-})
+});
 const App = connect(
     stateToPropertiesMapper,
-    dispatcherToPropsMapper)(WidgetList)
+    dispatcherToPropsMapper)(WidgetList);
 
 export default App

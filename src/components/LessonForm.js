@@ -1,6 +1,12 @@
 import React from 'react';
 import LessonService from '../services/LessonService';
 import TopicTabs from "../containers/TopicTabs";
+import App from "../containers/widgetList";
+import {widgetReducer} from "../reducers/widgetReducer";
+import {createStore} from 'redux';
+import {Provider} from "react-redux";
+
+let store = createStore(widgetReducer);
 
 export default class LessonForm extends React.Component {
 
@@ -35,6 +41,10 @@ export default class LessonForm extends React.Component {
             <h3>Lesson - {this.state.lesson.title}</h3>
             <h4 className="mt-2">Topics</h4>
             <TopicTabs lessonId={this.state.lessonId}/>
+
+            <Provider store={store}>
+                <App/>
+            </Provider>
         </div>
     }
 
