@@ -94,6 +94,19 @@ const List = ({widget, preview}) => {
     )
 };
 
+const Link = ({widget, preview}) => {
+  let nameElem;
+  return (
+      <div hidden={preview}>
+          <input className="form-control mb-4" value={widget.linkText}/>
+          <input className="form-control mb-4" value={widget.linkUrl}/>
+          <input className="form-control mb-5"
+                 value={widget.name}
+                 ref={node => nameElem = node}/>
+      </div>
+  )
+};
+
 const Widget = ({widget, preview, dispatch}) => {
     let selectElement;
     return(
@@ -114,6 +127,7 @@ const Widget = ({widget, preview, dispatch}) => {
                         <option>Heading</option>
                         <option>Paragraph</option>
                         <option>List</option>
+                        <option>Link</option>
                         <option>Image</option>
                     </select>
 
@@ -126,6 +140,7 @@ const Widget = ({widget, preview, dispatch}) => {
                 {widget.widgetType==='Heading' && <HeadingContainer widget={widget}/>}
                 {widget.widgetType==='Paragraph' && <Paragraph widget={widget}/>}
                 {widget.widgetType==='List' && <List widget={widget}/>}
+                {widget.widgetType==='Link' && <Link widget={widget}/>}
                 {widget.widgetType==='Image' && <Image widget={widget}/>}
             </div>
         </li>

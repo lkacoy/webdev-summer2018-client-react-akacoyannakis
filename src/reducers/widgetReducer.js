@@ -85,7 +85,9 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         widgetType: 'Heading',
                         size: '1',
                         name: 'Widget name',
-                        url: 'Image URL'
+                        url: 'Image URL',
+                        linkUrl: 'Link URL',
+                        linkText: 'Link Text'
                     }
                 ]
             };
