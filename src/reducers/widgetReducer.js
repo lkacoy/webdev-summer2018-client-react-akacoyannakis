@@ -84,10 +84,20 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             return {
                widgets: state.widgets.map(widget => {
                    if (widget.id === action.id) {
-                       widget.url = action.url
+                       widget.linkUrl = action.linkUrl
                    }
-                   return Object.assign({}, widget)
+
                })
+            };
+
+        case constants.IMAGE_URL_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if (widget.id ===action.id) {
+                        widget.imageUrl = action.imageUrl
+                    }
+                    return Object.assign({}, widget)
+                })
             };
 
         case constants.SELECT_WIDGET_TYPE:
@@ -135,7 +145,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         widgetType: 'Heading',
                         size: '1',
                         name: 'Widget name',
-                        url: 'Image URL',
+                        imageUrl: 'Image URL',
                         linkUrl: 'Link URL',
                         linkText: 'Link Text',
                         listItems: 'Put each\nitem in\na separate row',

@@ -55,10 +55,17 @@ export const linkUrlChanged = (dispatch, widgetId, newLinkUrl) => (
     dispatch({
         type: constants.LINK_URL_CHANGED,
         id: widgetId,
-        url: newLinkUrl
+        linkUrl: newLinkUrl
     })
 );
 
+export const imageUrlChanged = (dispatch, widgetId, newImageUrl) => (
+    dispatch({
+        type: constants.IMAGE_URL_CHANGED,
+        id: widgetId,
+        imageUrl: newImageUrl
+    })
+);
 
 export const findAllWidgets = dispatch => {
     fetch('http://localhost:8080/api/widget')

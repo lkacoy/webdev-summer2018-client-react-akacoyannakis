@@ -54,12 +54,15 @@ const Paragraph = ({widget, preview, paragraphTextChanged, nameChanged}) => {
     )
 };
 
-const Image = ({widget, preview, nameChanged}) => {
+const Image = ({widget, preview, nameChanged, imageUrlChanged}) => {
     let nameElem;
+    let imageUrlElem;
     return (
         <div hidden={preview}>
             <input className="form-control mb-4"
-                   value={widget.url}/>
+                   onChange={() => imageUrlChanged(widget.id, imageUrlElem.value)}
+                   value={widget.imageUrl}
+                   ref={node => imageUrlElem = node}/>
             <input className="form-control mb-5"
                    value={widget.name}
                    onChange={() => nameChanged(widget.id, nameElem.value)}
@@ -80,7 +83,7 @@ const List = ({widget, preview, nameChanged, listItemsChanged, listOrderChanged}
                       ref={node => listElem = node}/>
             <select className="form-control mb-4"
                     onChange={() => listOrderChanged(widget.id, listOrderElem.value)}
-                    value={widget.ordered}
+                    value={widget.order}
                     ref={node => listOrderElem = node}>
                 <option value="unordered">Unordered list</option>
                 <option value="ordered">Ordered list</option>
@@ -105,7 +108,7 @@ const Link = ({widget, preview, nameChanged, linkTextChanged, linkUrlChanged}) =
                  ref={node => textElem = node}/>
           <input className="form-control mb-4"
                  onChange={() => linkUrlChanged(widget.id, urlElem.value)}
-                 value={widget.url}
+                 value={widget.linkUrl}
                  ref={node => urlElem = node}/>
           <input className="form-control mb-5"
                  onChange={() => nameChanged(widget.id, nameElem.value)}
@@ -183,7 +186,9 @@ const dispathToPropsMapper = dispatch => ({
     linkTextChanged:(widgetId, newLinkText) =>
         actions.linkTextChanged(dispatch, widgetId, newLinkText),
     linkUrlChanged: (widgetId, newLinkUrl) =>
-        actions.linkUrlChanged(dispatch, widgetId, newLinkUrl)
+        actions.linkUrlChanged(dispatch, widgetId, newLinkUrl),
+    imageUrlChanged: (widgetId, newImageUrl) =>
+        actions.imageUrlChanged(dispatch, widgetId, newImageUrl)
 
 });
 const stateToPropsMapper = state => ({
