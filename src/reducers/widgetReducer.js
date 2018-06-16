@@ -91,7 +91,18 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                     }
                 ]
             };
+
+        case constants.MOVE_UP:
+            let index = state.indexOf(action.widget);
+            state.move(index, index - 1);
+            return state.splice(0);
+
         default:
             return state
     }
+};
+
+Array.prototype.move
+    = function (from, to) {
+    this.splice(to, 0, this.splice(from, 1)[0]);
 };

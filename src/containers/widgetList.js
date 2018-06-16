@@ -8,8 +8,20 @@ class WidgetList extends Component {
         super(props);
         this.props.findAllWidgets()
     }
+
+    renderWidgets() {
+        if (this.props.widgets) {
+            return this.props.widgets.map(widget => (
+                    <WidgetContainer widget={widget}
+                                     preview={this.props.previewMode}
+                                     key={widget.id}/>
+                ))
+
+        }
+    }
+
     render() {
-        console.log(this.props);
+        console.log(this.props.widgets);
         return(
             <div>
                 <div className="row pull-right">
@@ -23,11 +35,7 @@ class WidgetList extends Component {
                 </div><br/>
                 <div className="row">
                     <ul>
-                        {this.props.widgets.map(widget => (
-                            <WidgetContainer widget={widget}
-                                             preview={this.props.previewMode}
-                                             key={widget.id}/>
-                        ))}
+                        {this.renderWidgets()}
                     </ul>
                 </div>
                 <div className="row pull-right">

@@ -14,7 +14,7 @@ export default class TopicTabItem extends React.Component {
     render() {
         return (
             <div>
-                <li className='nav-item mr-4'>{this.props.topic.title}</li>
+                <button className='btn btn-primary mr-4'>{this.props.topic.title}</button>
             </div>
         );
     }

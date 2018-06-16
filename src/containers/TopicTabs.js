@@ -35,6 +35,7 @@ export default class TopicTabs extends React.Component {
         return (
             <div className="row">
                 {this.renderListOfTopics()}
+                <button className='btn btn-primary mr-4'><i className="fa fa-plus"></i></button>
             </div>
         );
     }
@@ -50,10 +51,6 @@ export default class TopicTabs extends React.Component {
                 )
             });
             return (topics);
-        } else {
-            return <div className="mb-2">
-                No topics available.
-            </div>
         }
     }
 
