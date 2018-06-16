@@ -133,7 +133,7 @@ const Widget = ({widget, preview, dispatch}) => {
     let selectElement;
     return(
         <div className="form-group">
-            <div className="input-group" hidden={preview}>
+            <div className="input-group mb-2" hidden={preview}>
                 <h2 className="mr-5">{widget.widgetType} Widget</h2>
                 <button className="btn btn-warning mr-2" onClick={() => {
                     dispatch(moveUp(widget))
@@ -141,7 +141,7 @@ const Widget = ({widget, preview, dispatch}) => {
                 <button className="btn btn-warning mr-2" onClick={() => {
                     dispatch(moveDown(widget))
                 }}><i className="fa fa-arrow-down"></i></button>
-                <select className="form-control" value={widget.widgetType}
+                <select className="form-control mr-2" value={widget.widgetType}
                         onChange={e =>
                                 dispatch({
                                     type: 'SELECT_WIDGET_TYPE',
