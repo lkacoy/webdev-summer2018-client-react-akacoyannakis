@@ -4,22 +4,24 @@ import {DELETE_WIDGET} from "../constants/index"
 import * as actions from '../actions'
 
 const Heading = ({widget, preview, headingTextChanged, headingSizeChanged}) => {
-    let selectElem
-    let inputElem
+    let selectElem;
+    let inputElem;
     return(
         <div>
             <div hidden={preview}>
                 <h2> Heading {widget.size}</h2>
-                <input onChange={() => headingTextChanged(widget.id, inputElem.value)}
+                <input className=" form-control mb-4" onChange={() => headingTextChanged(widget.id, inputElem.value)}
                        value={widget.text}
                        ref={node => inputElem = node}/>
-                <select onChange={() => headingSizeChanged(widget.id, selectElem.value)}
+                <select className="form-control mb-4" onChange={() => headingSizeChanged(widget.id, selectElem.value)}
                         value={widget.size}
                         ref={node => selectElem = node}>
+                    <option value="">Choose size</option>
                     <option value="1">Heading 1</option>
                     <option value="2">Heading 2</option>
                     <option value="3">Heading 3</option>
                 </select>
+                <input className="form-control mb-5" value={widget.name} placeholder="Widget name"/>
                 <h3>Preview</h3>
             </div>
             {widget.size == 1 && <h1>{widget.text}</h1>}
