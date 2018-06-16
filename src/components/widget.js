@@ -110,15 +110,13 @@ const Link = ({widget, preview}) => {
 const Widget = ({widget, preview, dispatch}) => {
     let selectElement;
     return(
-        <li>
-            <div className="row" hidden={preview}>
-                <div className="col"><h2>{widget.widgetType} Widget</h2></div>
-
-                <div className="col pull-right">
-                    <button className="btn btn-warning mr-2"><i className="fa fa-arrow-up"></i></button>
-                    <button className="btn btn-warning mr-2"><i className="fa fa-arrow-down"></i></button>
-                    <select className="form-control" value={widget.widgetType}
-                            onChange={e =>
+        <div className="form-group">
+            <div className="input-group" hidden={preview}>
+                <h2 className="mr-5">{widget.widgetType} Widget</h2>
+                <button className="btn btn-warning mr-2"><i className="fa fa-arrow-up"></i></button>
+                <button className="btn btn-warning mr-2"><i className="fa fa-arrow-down"></i></button>
+                <select className="form-control" value={widget.widgetType}
+                        onChange={e =>
                                 dispatch({
                                     type: 'SELECT_WIDGET_TYPE',
                                     id: widget.id,
@@ -129,12 +127,10 @@ const Widget = ({widget, preview, dispatch}) => {
                         <option>List</option>
                         <option>Link</option>
                         <option>Image</option>
-                    </select>
-
-                    <button className="btn btn-danger mr-4" onClick={e => (
+                </select>
+                <button className="btn btn-danger mr-4" onClick={e => (
                         dispatch({type: DELETE_WIDGET, id: widget.id})
-                    )}><i className="fa fa-minus-circle"></i></button>
-                </div>
+                        )}><i className="fa fa-minus-circle"></i></button>
             </div>
             <div>
                 {widget.widgetType==='Heading' && <HeadingContainer widget={widget}/>}
@@ -143,9 +139,9 @@ const Widget = ({widget, preview, dispatch}) => {
                 {widget.widgetType==='Link' && <Link widget={widget}/>}
                 {widget.widgetType==='Image' && <Image widget={widget}/>}
             </div>
-        </li>
+        </div>
     )
-}
+};
 const WidgetContainer = connect(state => ({
     preview: state.preview
 }))(Widget);
