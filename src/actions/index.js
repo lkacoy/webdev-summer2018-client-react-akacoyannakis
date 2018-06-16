@@ -35,6 +35,14 @@ export const listItemsChanged = (dispatch, widgetId, newListItems) => (
     })
 );
 
+export const listOrderChanged = (dispatch, widgetId, newOrder) => (
+    dispatch({
+        type: constants.LIST_ORDER_CHANGED,
+        id: widgetId,
+        order: newOrder
+    })
+);
+
 export const findAllWidgets = dispatch => {
     fetch('http://localhost:8080/api/widget')
         .then(response => (response.json()))

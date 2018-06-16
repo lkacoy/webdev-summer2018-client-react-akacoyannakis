@@ -60,6 +60,16 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                 })
             };
 
+        case constants.LIST_ORDER_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if (widget.id === action.id) {
+                        widget.order = action.order
+                    }
+                    return Object.assign({}, widget)
+                })
+            };
+
         case constants.SELECT_WIDGET_TYPE:
             console.log(action);
             let newState = {
@@ -108,7 +118,8 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         url: 'Image URL',
                         linkUrl: 'Link URL',
                         linkText: 'Link Text',
-                        listItems: 'Put each\nitem in\na separate row'
+                        listItems: 'Put each\nitem in\na separate row',
+                        order: 'unordered'
                     }
                 ]
             };

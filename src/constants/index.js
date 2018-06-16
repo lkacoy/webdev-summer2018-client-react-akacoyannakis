@@ -11,3 +11,4 @@ export const MOVE_UP = "MOVE_UP";
 export const MOVE_DOWN = "MOVE_DOWN";
 export const NAME_CHANGED = "NAME_CHANGED";
 export const LIST_ITEMS_CHANGED = "LIST_ITEMS_CHANGED";
+export const LIST_ORDER_CHANGED = "LIST_ORDER_CHANGED";
