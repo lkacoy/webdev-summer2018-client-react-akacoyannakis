@@ -2,7 +2,6 @@ import React from  'react'
 import {connect} from 'react-redux'
 import {DELETE_WIDGET} from "../constants/index"
 import * as actions from '../actions'
-import {nameChanged} from "../actions";
 
 const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, nameChanged}) => {
     let selectElem;
