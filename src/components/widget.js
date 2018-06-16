@@ -162,7 +162,7 @@ const Widget = ({widget, preview, dispatch}) => {
                 {widget.widgetType==='Heading' && <HeadingContainer widget={widget}/>}
                 {widget.widgetType==='Paragraph' && <ParagraphContainer widget={widget}/>}
                 {widget.widgetType==='List' && <ListContainer widget={widget}/>}
-                {widget.widgetType==='Link' && <Link widget={widget}/>}
+                {widget.widgetType==='Link' && <LinkContainer widget={widget}/>}
                 {widget.widgetType==='Image' && <Image widget={widget}/>}
             </div>
         </div>
@@ -172,6 +172,7 @@ const Widget = ({widget, preview, dispatch}) => {
 export const HeadingContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Heading);
 export const ParagraphContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Paragraph);
 export const ListContainer = connect(stateToPropsMapper, dispathToPropsMapper)(List);
+export const LinkContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Link);
 
 const WidgetContainer = connect(state => ({
     preview: state.preview
