@@ -1,14 +1,14 @@
 import * as constants from "../constants/index"
 
 export const widgetReducer = (state = {widgets: [], preview: false}, action) => {
-    let newState
+    let newState;
     switch (action.type) {
 
         case constants.PREVIEW:
             return {
                 widgets: state.widgets,
                 preview: !state.preview
-            }
+            };
 
         case constants.HEADING_TEXT_CHANGED:
             return {
@@ -18,7 +18,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                     }
                     return Object.assign({}, widget)
                 })
-            }
+            };
 
         case constants.HEADING_SIZE_CHANGED:
             return {
@@ -28,7 +28,17 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                     }
                     return Object.assign({}, widget)
                 })
-            }
+            };
+
+        case constants.PARAGRAPH_TEXT_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if (widget.id === action.id) {
+                        widget.text = action.text
+                    }
+                    return Object.assign({}, widget)
+                })
+            };
 
         case constants.SELECT_WIDGET_TYPE:
             console.log(action);
@@ -39,8 +49,8 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                     }
                     return true;
                 })
-            }
-            return JSON.parse(JSON.stringify(newState))
+            };
+            return JSON.parse(JSON.stringify(newState));
 
         case constants.SAVE:
 
@@ -50,20 +60,20 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                 body: JSON.stringify(state.widgets),
                 headers: {
                     'content-type': 'application/json'}
-            })
+            });
 
 
-            return state
+            return state;
         case constants.FIND_ALL_WIDGETS:
-            newState = Object.assign({}, state)
-            newState.widgets = action.widgets
-            return newState
+            newState = Object.assign({}, state);
+            newState.widgets = action.widgets;
+            return newState;
         case constants.DELETE_WIDGET:
             return {
                 widgets: state.widgets.filter(widget => (
                     widget.id !== action.id
                 ))
-            }
+            };
         case constants.ADD_WIDGET:
             return {
                 widgets: [
@@ -72,11 +82,12 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         id: state.widgets.length + 1,
                         text: 'New Widget',
                         widgetType: 'Heading',
-                        size: '1'
+                        size: '1',
+                        name: 'Widget name'
                     }
                 ]
-            }
+            };
         default:
             return state
     }
-}
+};
