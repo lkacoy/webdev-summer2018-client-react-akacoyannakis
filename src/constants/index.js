@@ -9,3 +9,4 @@ export const PREVIEW = 'PREVIEW';
 export const PARAGRAPH_TEXT_CHANGED = "PARAGRAPH_TEXT_CHANGED";
 export const MOVE_UP = "MOVE_UP";
 export const MOVE_DOWN = "MOVE_DOWN";
+export const NAME_CHANGED = "NAME_CHANGED";

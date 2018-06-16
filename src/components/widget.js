@@ -2,8 +2,9 @@ import React from  'react'
 import {connect} from 'react-redux'
 import {DELETE_WIDGET} from "../constants/index"
 import * as actions from '../actions'
+import {nameChanged} from "../actions";
 
-const Heading = ({widget, preview, headingTextChanged, headingSizeChanged}) => {
+const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, nameChanged}) => {
     let selectElem;
     let inputElem;
     let nameElem;
@@ -23,6 +24,7 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged}) => {
                     <option value="3">Heading 3</option>
                 </select>
                 <input className="form-control mb-5"
+                       onChange={() => nameChanged(widget.id, nameElem.value)}
                        value={widget.name}
                        ref={node => nameElem = node}/>
                 <h3>Preview</h3>
@@ -38,8 +40,11 @@ const dispathToPropsMapper = dispatch => ({
         actions.headingTextChanged(dispatch, widgetId, newText),
     headingSizeChanged: (widgetId, newSize) =>
         actions.headingSizeChanged(dispatch, widgetId, newSize),
+    nameChanged: (widgetId, newName) =>
+        actions.nameChanged(dispatch, widgetId, newName),
     paragraphTextChanged: (widgetId, newText) =>
         actions.paragraphTextChanged(dispatch, widgetId, newText),
+
 });
 const stateToPropsMapper = state => ({
     preview: state.preview
@@ -47,7 +52,7 @@ const stateToPropsMapper = state => ({
 export const HeadingContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Heading);
 //export const ParagraphContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Paragraph);
 
-const Paragraph = ({widget, preview, paragraphTextChanged}) => {
+const Paragraph = ({widget, preview, paragraphTextChanged, nameChanged}) => {
     let nameElem;
     let textElem;
     return (
@@ -57,13 +62,14 @@ const Paragraph = ({widget, preview, paragraphTextChanged}) => {
                       value={widget.paragraph}
                       ref={node => textElem = node} defaultValue="Paragraph Text"></textarea>
             <input className="form-control mb-5"
+                   onChange={() => nameChanged(widget.id, nameElem.value)}
                    value={widget.name}
                    ref={node => nameElem = node}/>
         </div>
     )
 };
 
-const Image = ({widget, preview}) => {
+const Image = ({widget, preview, nameChanged}) => {
     let nameElem;
     return (
         <div hidden={preview}>
@@ -71,12 +77,13 @@ const Image = ({widget, preview}) => {
                    value={widget.url}/>
             <input className="form-control mb-5"
                    value={widget.name}
+                   onChange={() => nameChanged(widget.id, nameElem.value)}
                    ref={node => nameElem = node}/>
         </div>
     )
 };
 
-const List = ({widget, preview}) => {
+const List = ({widget, preview, nameChanged}) => {
     let nameElem;
     return (
         <div hidden={preview}>
@@ -88,19 +95,21 @@ const List = ({widget, preview}) => {
                 <option value="ordered">Ordered list</option>
             </select>
             <input className="form-control mb-5"
+                   onChange={() => nameChanged(widget.id, nameElem.value)}
                    value={widget.name}
                    ref={node => nameElem = node}/>
         </div>
     )
 };
 
-const Link = ({widget, preview}) => {
+const Link = ({widget, preview, nameChanged}) => {
   let nameElem;
   return (
       <div hidden={preview}>
           <input className="form-control mb-4" value={widget.linkText}/>
           <input className="form-control mb-4" value={widget.linkUrl}/>
           <input className="form-control mb-5"
+                 onChange={() => nameChanged(widget.id, nameElem.value)}
                  value={widget.name}
                  ref={node => nameElem = node}/>
       </div>

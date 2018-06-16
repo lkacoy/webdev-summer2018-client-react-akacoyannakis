@@ -20,6 +20,13 @@ export const paragraphTextChanged = (dispatch, widgetId, newText) => (
         text: newText})
 );
 
+export const nameChanged = (dispatch, widgetId, newName) => (
+    dispatch({
+        type: constants.NAME_CHANGED,
+        id: widgetId,
+        name: newName})
+);
+
 export const findAllWidgets = dispatch => {
     fetch('http://localhost:8080/api/widget')
         .then(response => (response.json()))

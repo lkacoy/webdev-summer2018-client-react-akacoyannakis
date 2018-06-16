@@ -30,6 +30,16 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                 })
             };
 
+        case constants.NAME_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if(widget.id === action.id) {
+                        widget.name = action.name
+                    }
+                    return Object.assign({}, widget)
+                })
+            };
+
         case constants.PARAGRAPH_TEXT_CHANGED:
             return {
                 widgets: state.widgets.map(widget => {
@@ -55,7 +65,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
         case constants.SAVE:
 
 
-            fetch('http://localhost:8080/api/widget/save', {
+            fetch('http://localhost:8080/api/lesson/362/widget', {
                 method: 'post',
                 body: JSON.stringify(state.widgets),
                 headers: {
