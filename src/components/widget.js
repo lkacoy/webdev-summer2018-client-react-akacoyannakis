@@ -3,22 +3,6 @@ import {connect} from 'react-redux'
 import {DELETE_WIDGET} from "../constants/index"
 import * as actions from '../actions'
 
-const dispathToPropsMapper = dispatch => ({
-    headingTextChanged: (widgetId, newText) =>
-        actions.headingTextChanged(dispatch, widgetId, newText),
-    headingSizeChanged: (widgetId, newSize) =>
-        actions.headingSizeChanged(dispatch, widgetId, newSize),
-    nameChanged: (widgetId, newName) =>
-        actions.nameChanged(dispatch, widgetId, newName),
-    paragraphTextChanged: (widgetId, newText) =>
-        actions.paragraphTextChanged(dispatch, widgetId, newText),
-
-});
-const stateToPropsMapper = state => ({
-    preview: state.preview
-});
-
-
 const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, nameChanged}) => {
     let selectElem;
     let inputElem;
@@ -168,6 +152,21 @@ const Widget = ({widget, preview, dispatch}) => {
         </div>
     )
 };
+
+const dispathToPropsMapper = dispatch => ({
+    headingTextChanged: (widgetId, newText) =>
+        actions.headingTextChanged(dispatch, widgetId, newText),
+    headingSizeChanged: (widgetId, newSize) =>
+        actions.headingSizeChanged(dispatch, widgetId, newSize),
+    nameChanged: (widgetId, newName) =>
+        actions.nameChanged(dispatch, widgetId, newName),
+    paragraphTextChanged: (widgetId, newText) =>
+        actions.paragraphTextChanged(dispatch, widgetId, newText),
+
+});
+const stateToPropsMapper = state => ({
+    preview: state.preview
+});
 
 export const HeadingContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Heading);
 export const ParagraphContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Paragraph);
