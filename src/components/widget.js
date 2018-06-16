@@ -54,8 +54,8 @@ const Paragraph = ({widget, preview, paragraphTextChanged}) => {
         <div hidden={preview}>
             <textarea className="form-control mb-4" placeholder="Paragraph text"
                       onChange={() => paragraphTextChanged(widget.id, textElem.value)}
-                      value={widget.text}
-                      ref={node => textElem = node}>Paragraph text</textarea>
+                      value={widget.paragraph}
+                      ref={node => textElem = node} defaultValue="Paragraph Text"></textarea>
             <input className="form-control mb-5"
                    value={widget.name}
                    ref={node => nameElem = node}/>
@@ -63,13 +63,36 @@ const Paragraph = ({widget, preview, paragraphTextChanged}) => {
     )
 };
 
-const Image = () => (
-    <h2>Image</h2>
-);
+const Image = ({widget, preview}) => {
+    let nameElem;
+    return (
+        <div hidden={preview}>
+            <input className="form-control mb-4"
+                   value={widget.url}/>
+            <input className="form-control mb-5"
+                   value={widget.name}
+                   ref={node => nameElem = node}/>
+        </div>
+    )
+};
 
-const List = () => (
-    <h2>List</h2>
-);
+const List = ({widget, preview}) => {
+    let nameElem;
+    return (
+        <div hidden={preview}>
+            <textarea className="form-control mb-4" value="Put each
+                item in
+                a separate row"></textarea>
+            <select className="form-control mb-4">
+                <option value="unordered">Unordered list</option>
+                <option value="ordered">Ordered list</option>
+            </select>
+            <input className="form-control mb-5"
+                   value={widget.name}
+                   ref={node => nameElem = node}/>
+        </div>
+    )
+};
 
 const Widget = ({widget, preview, dispatch}) => {
     let selectElement;
@@ -102,8 +125,8 @@ const Widget = ({widget, preview, dispatch}) => {
             <div>
                 {widget.widgetType==='Heading' && <HeadingContainer widget={widget}/>}
                 {widget.widgetType==='Paragraph' && <Paragraph widget={widget}/>}
-                {widget.widgetType==='List' && <List/>}
-                {widget.widgetType==='Image' && <Image/>}
+                {widget.widgetType==='List' && <List widget={widget}/>}
+                {widget.widgetType==='Image' && <Image widget={widget}/>}
             </div>
         </li>
     )
