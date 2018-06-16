@@ -80,6 +80,16 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                 })
             };
 
+        case constants.LINK_URL_CHANGED:
+            return {
+               widgets: state.widgets.map(widget => {
+                   if (widget.id === action.id) {
+                       widget.url = action.url
+                   }
+                   return Object.assign({}, widget)
+               })
+            };
+
         case constants.SELECT_WIDGET_TYPE:
             console.log(action);
             let newState = {

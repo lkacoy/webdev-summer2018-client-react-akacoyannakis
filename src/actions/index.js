@@ -51,6 +51,15 @@ export const linkTextChanged = (dispatch, widgetId, newLinkText) => (
     })
 );
 
+export const linkUrlChanged = (dispatch, widgetId, newLinkUrl) => (
+    dispatch({
+        type: constants.LINK_URL_CHANGED,
+        id: widgetId,
+        url: newLinkUrl
+    })
+);
+
+
 export const findAllWidgets = dispatch => {
     fetch('http://localhost:8080/api/widget')
         .then(response => (response.json()))
