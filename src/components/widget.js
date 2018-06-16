@@ -3,6 +3,22 @@ import {connect} from 'react-redux'
 import {DELETE_WIDGET} from "../constants/index"
 import * as actions from '../actions'
 
+const dispathToPropsMapper = dispatch => ({
+    headingTextChanged: (widgetId, newText) =>
+        actions.headingTextChanged(dispatch, widgetId, newText),
+    headingSizeChanged: (widgetId, newSize) =>
+        actions.headingSizeChanged(dispatch, widgetId, newSize),
+    nameChanged: (widgetId, newName) =>
+        actions.nameChanged(dispatch, widgetId, newName),
+    paragraphTextChanged: (widgetId, newText) =>
+        actions.paragraphTextChanged(dispatch, widgetId, newText),
+
+});
+const stateToPropsMapper = state => ({
+    preview: state.preview
+});
+
+
 const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, nameChanged}) => {
     let selectElem;
     let inputElem;
@@ -34,36 +50,22 @@ const Heading = ({widget, preview, headingTextChanged, headingSizeChanged, nameC
         </div>
     )
 };
-const dispathToPropsMapper = dispatch => ({
-    headingTextChanged: (widgetId, newText) =>
-        actions.headingTextChanged(dispatch, widgetId, newText),
-    headingSizeChanged: (widgetId, newSize) =>
-        actions.headingSizeChanged(dispatch, widgetId, newSize),
-    nameChanged: (widgetId, newName) =>
-        actions.nameChanged(dispatch, widgetId, newName),
-    paragraphTextChanged: (widgetId, newText) =>
-        actions.paragraphTextChanged(dispatch, widgetId, newText),
-
-});
-const stateToPropsMapper = state => ({
-    preview: state.preview
-});
-export const HeadingContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Heading);
-//export const ParagraphContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Paragraph);
 
 const Paragraph = ({widget, preview, paragraphTextChanged, nameChanged}) => {
     let nameElem;
     let textElem;
     return (
-        <div hidden={preview}>
-            <textarea className="form-control mb-4" placeholder="Paragraph text"
-                      onChange={() => paragraphTextChanged(widget.id, textElem.value)}
-                      value={widget.paragraph}
-                      ref={node => textElem = node} defaultValue="Paragraph Text"></textarea>
-            <input className="form-control mb-5"
-                   onChange={() => nameChanged(widget.id, nameElem.value)}
-                   value={widget.name}
-                   ref={node => nameElem = node}/>
+        <div>
+            <div hidden={preview}>
+                <textarea className="form-control mb-4" placeholder="Paragraph text"
+                          onChange={() => paragraphTextChanged(widget.id, textElem.value)}
+                          value={widget.paragraph}
+                          ref={node => textElem = node} defaultValue="Paragraph Text"/>
+                <input className="form-control mb-5"
+                       onChange={() => nameChanged(widget.id, nameElem.value)}
+                       value={widget.name}
+                       ref={node => nameElem = node}/>
+            </div>
         </div>
     )
 };
@@ -88,7 +90,7 @@ const List = ({widget, preview, nameChanged}) => {
         <div hidden={preview}>
             <textarea className="form-control mb-4" value="Put each
                 item in
-                a separate row"></textarea>
+                a separate row"/>
             <select className="form-control mb-4">
                 <option value="unordered">Unordered list</option>
                 <option value="ordered">Ordered list</option>
@@ -158,7 +160,7 @@ const Widget = ({widget, preview, dispatch}) => {
             </div>
             <div>
                 {widget.widgetType==='Heading' && <HeadingContainer widget={widget}/>}
-                {widget.widgetType==='Paragraph' && <Paragraph widget={widget}/>}
+                {widget.widgetType==='Paragraph' && <ParagraphContainer widget={widget}/>}
                 {widget.widgetType==='List' && <List widget={widget}/>}
                 {widget.widgetType==='Link' && <Link widget={widget}/>}
                 {widget.widgetType==='Image' && <Image widget={widget}/>}
@@ -166,6 +168,9 @@ const Widget = ({widget, preview, dispatch}) => {
         </div>
     )
 };
+
+export const HeadingContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Heading);
+export const ParagraphContainer = connect(stateToPropsMapper, dispathToPropsMapper)(Paragraph);
 const WidgetContainer = connect(state => ({
     preview: state.preview
 }))(Widget);
