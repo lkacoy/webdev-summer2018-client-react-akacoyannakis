@@ -43,6 +43,14 @@ export const listOrderChanged = (dispatch, widgetId, newOrder) => (
     })
 );
 
+export const linkTextChanged = (dispatch, widgetId, newLinkText) => (
+    dispatch({
+        type: constants.LINK_TEXT_CHANGED,
+        id: widgetId,
+        linkText: newLinkText
+    })
+);
+
 export const findAllWidgets = dispatch => {
     fetch('http://localhost:8080/api/widget')
         .then(response => (response.json()))

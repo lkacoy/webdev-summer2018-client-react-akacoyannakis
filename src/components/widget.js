@@ -93,11 +93,15 @@ const List = ({widget, preview, nameChanged, listItemsChanged, listOrderChanged}
     )
 };
 
-const Link = ({widget, preview, nameChanged}) => {
+const Link = ({widget, preview, nameChanged, linkTextChanged}) => {
   let nameElem;
+  let textElem;
   return (
       <div hidden={preview}>
-          <input className="form-control mb-4" value={widget.linkText}/>
+          <input className="form-control mb-4"
+                 onChange={() => linkTextChanged(widget.id, textElem.value)}
+                 value={widget.linkText}
+                 ref={node => textElem = node}/>
           <input className="form-control mb-4" value={widget.linkUrl}/>
           <input className="form-control mb-5"
                  onChange={() => nameChanged(widget.id, nameElem.value)}
@@ -171,7 +175,9 @@ const dispathToPropsMapper = dispatch => ({
     listItemsChanged:(widgetId, newListItems) =>
         actions.listItemsChanged(dispatch, widgetId, newListItems),
     listOrderChanged:(widgetId, newOrder) =>
-        actions.listOrderChanged(dispatch, widgetId, newOrder)
+        actions.listOrderChanged(dispatch, widgetId, newOrder),
+    linkTextChanged:(widgetId, newLinkText) =>
+        actions.linkTextChanged(dispatch, widgetId, newLinkText)
 
 });
 const stateToPropsMapper = state => ({
