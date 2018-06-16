@@ -58,25 +58,29 @@ const Widget = ({widget, preview, dispatch}) => {
     let selectElement
     return(
         <li>
-            <div hidden={preview}>
-                {widget.id} {widget.widgetType}
+            <div className="row" hidden={preview}>
+                <div className="col"><h2>{widget.widgetType}</h2></div>
 
-                <select value={widget.widgetType}
-                        onChange={e =>
-                            dispatch({
-                                type: 'SELECT_WIDGET_TYPE',
-                                id: widget.id,
-                                widgetType: selectElement.value
-                            })} ref={node => selectElement = node}>
-                    <option>Heading</option>
-                    <option>Paragraph</option>
-                    <option>List</option>
-                    <option>Image</option>
-                </select>
+                <div className="col pull-right">
+                    <button className="btn btn-warning mr-2"><i className="fa fa-arrow-up"></i></button>
+                    <button className="btn btn-warning mr-2"><i className="fa fa-arrow-down"></i></button>
+                    <select className="form-control" value={widget.widgetType}
+                            onChange={e =>
+                                dispatch({
+                                    type: 'SELECT_WIDGET_TYPE',
+                                    id: widget.id,
+                                    widgetType: selectElement.value
+                                })} ref={node => selectElement = node}>
+                        <option>Heading</option>
+                        <option>Paragraph</option>
+                        <option>List</option>
+                        <option>Image</option>
+                    </select>
 
-                <button onClick={e => (
-                    dispatch({type: DELETE_WIDGET, id: widget.id})
-                )}>Delete</button>
+                    <button className="btn btn-danger mr-4" onClick={e => (
+                        dispatch({type: DELETE_WIDGET, id: widget.id})
+                    )}><i className="fa fa-minus-circle"></i></button>
+                </div>
             </div>
             <div>
                 {widget.widgetType==='Heading' && <HeadingContainer widget={widget}/>}

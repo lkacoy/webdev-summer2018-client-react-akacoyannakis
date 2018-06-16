@@ -12,24 +12,28 @@ class WidgetList extends Component {
         console.log(this.props);
         return(
             <div>
-                <h1>Widget List {this.props.widgets.length}</h1>
-
-                <button hidden={this.props.previewMode} onClick={this.props.save}>
-                    Save
-                </button>
-                <button onClick={this.props.preview}>
-                    Preview
-                </button>
-
-                <ul>
-                    {this.props.widgets.map(widget => (
-                        <WidgetContainer widget={widget}
-                                         preview={this.props.previewMode}
-                                         key={widget.id}/>
-                    ))}
-                </ul>
-                <button onClick={this.props.addWidget}>Add widget
-                </button>
+                <div className="row pull-right">
+                    <button className="btn btn-success mr-2" hidden={this.props.previewMode}
+                            onClick={this.props.save}>
+                        Save
+                    </button>
+                    <button className="btn btn-info mr-4" onClick={this.props.preview}>
+                        Preview
+                    </button>
+                </div><br/>
+                <div className="row">
+                    <ul>
+                        {this.props.widgets.map(widget => (
+                            <WidgetContainer widget={widget}
+                                             preview={this.props.previewMode}
+                                             key={widget.id}/>
+                        ))}
+                    </ul>
+                </div>
+                <div className="row pull-right">
+                    <button className="btn btn-danger mr-4" onClick={this.props.addWidget}><i className="fa fa-plus"></i>
+                    </button>
+                </div>
             </div>
         )
     }
