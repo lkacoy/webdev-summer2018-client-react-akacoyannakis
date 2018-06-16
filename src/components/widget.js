@@ -68,13 +68,15 @@ const Image = ({widget, preview, nameChanged}) => {
     )
 };
 
-const List = ({widget, preview, nameChanged}) => {
+const List = ({widget, preview, nameChanged, listItemsChanged}) => {
     let nameElem;
+    let listElem;
     return (
         <div hidden={preview}>
-            <textarea className="form-control mb-4" value="Put each
-                item in
-                a separate row"/>
+            <textarea className="form-control mb-4"
+                      onChange={() => listItemsChanged(widget.id, listElem.value)}
+                      value={widget.listItems}
+                      ref={node => listElem = node}/>
             <select className="form-control mb-4">
                 <option value="unordered">Unordered list</option>
                 <option value="ordered">Ordered list</option>
@@ -162,6 +164,8 @@ const dispathToPropsMapper = dispatch => ({
         actions.nameChanged(dispatch, widgetId, newName),
     paragraphTextChanged: (widgetId, newText) =>
         actions.paragraphTextChanged(dispatch, widgetId, newText),
+    listItemsChanged:(widgetId, newListItems) =>
+        actions.listItemsChanged(dispatch, widgetId, newListItems)
 
 });
 const stateToPropsMapper = state => ({

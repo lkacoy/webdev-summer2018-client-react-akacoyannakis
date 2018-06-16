@@ -50,6 +50,16 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                 })
             };
 
+        case constants.LIST_ITEMS_CHANGED:
+            return {
+                widgets: state.widgets.map(widget => {
+                    if (widget.id === action.id) {
+                        widget.listItems = action.listItems
+                    }
+                    return Object.assign({}, widget)
+                })
+            };
+
         case constants.SELECT_WIDGET_TYPE:
             console.log(action);
             let newState = {
@@ -97,7 +107,8 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         name: 'Widget name',
                         url: 'Image URL',
                         linkUrl: 'Link URL',
-                        linkText: 'Link Text'
+                        linkText: 'Link Text',
+                        listItems: 'Put each\nitem in\na separate row'
                     }
                 ]
             };
