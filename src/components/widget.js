@@ -43,8 +43,8 @@ const Paragraph = ({widget, preview, paragraphTextChanged, nameChanged}) => {
             <div hidden={preview}>
                 <textarea className="form-control mb-4" placeholder="Paragraph text"
                           onChange={() => paragraphTextChanged(widget.id, textElem.value)}
-                          value={widget.paragraph}
-                          ref={node => textElem = node} defaultValue="Paragraph Text"/>
+                          value={widget.text}
+                          ref={node => textElem = node}/>
                 <input className="form-control mb-5"
                        onChange={() => nameChanged(widget.id, nameElem.value)}
                        value={widget.name}
