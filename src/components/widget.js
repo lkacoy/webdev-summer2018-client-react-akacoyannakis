@@ -49,7 +49,9 @@ const Paragraph = ({widget, preview, paragraphTextChanged, nameChanged}) => {
                        onChange={() => nameChanged(widget.id, nameElem.value)}
                        value={widget.name}
                        ref={node => nameElem = node}/>
+                <h3>Preview</h3>
             </div>
+            {widget.text}
         </div>
     )
 };
