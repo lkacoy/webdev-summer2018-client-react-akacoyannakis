@@ -115,7 +115,7 @@ const Link = ({widget, preview, nameChanged, linkTextChanged, linkUrlChanged}) =
           <div hidden={preview}>
               <input className="form-control mb-4"
                      onChange={() => linkTextChanged(widget.id, textElem.value)}
-                     value={widget.linkText}
+                     value={widget.text}
                      ref={node => textElem = node}/>
               <input className="form-control mb-4"
                      onChange={() => linkUrlChanged(widget.id, urlElem.value)}
@@ -127,7 +127,7 @@ const Link = ({widget, preview, nameChanged, linkTextChanged, linkUrlChanged}) =
                      ref={node => nameElem = node}/>
               <h3>Preview</h3>
           </div>
-          <a href={widget.href}>{widget.linkText}</a>
+          <a href={widget.href}>{widget.text}</a>
       </div>
   )
 };

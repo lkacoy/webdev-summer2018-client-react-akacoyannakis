@@ -74,7 +74,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             return {
                 widgets: state.widgets.map(widget => {
                     if (widget.id === action.id) {
-                        widget.linkText = action.linkText
+                        widget.text = action.text
                     }
                     return Object.assign({}, widget)
                 })
@@ -109,6 +109,8 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         widget.dType = action.widgetType;
                         if (widget.widgetType === 'Paragraph') {
                             widget.text = 'Paragraph text'
+                        } else if (widget.widgettype === 'Link') {
+                            widget.text = 'Link text'
                         }
                     }
                     return true;
@@ -148,7 +150,6 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         name: 'Widget name',
                         src: 'Image URL',
                         href: 'Link URL',
-                        linkText: 'Link Text',
                         listItems: 'Put each\nitem in a\nseparate row',
                         listType: 'unordered',
                         dType: 'Heading'
