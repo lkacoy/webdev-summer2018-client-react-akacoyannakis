@@ -108,7 +108,7 @@ const Link = ({widget, preview, nameChanged, linkTextChanged, linkUrlChanged}) =
                  ref={node => textElem = node}/>
           <input className="form-control mb-4"
                  onChange={() => linkUrlChanged(widget.id, urlElem.value)}
-                 value={widget.linkUrl}
+                 value={widget.href}
                  ref={node => urlElem = node}/>
           <input className="form-control mb-5"
                  onChange={() => nameChanged(widget.id, nameElem.value)}

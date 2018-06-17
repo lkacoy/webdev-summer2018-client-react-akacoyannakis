@@ -84,7 +84,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             return {
                widgets: state.widgets.map(widget => {
                    if (widget.id === action.id) {
-                       widget.linkUrl = action.linkUrl
+                       widget.href = action.href
                    }
 
                })
@@ -106,6 +106,9 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                 widgets: state.widgets.filter((widget) => {
                     if(widget.id === action.id) {
                         widget.widgetType = action.widgetType
+                        if (widget.widgetType === 'Paragraph') {
+                            widget.text = 'Paragraph text'
+                        }
                     }
                     return true;
                 })
@@ -139,14 +142,13 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                     {
                         id: state.widgets.length + 1,
                         text: 'New Widget',
-                        paragraph: 'Paragraph text',
                         widgetType: 'Heading',
                         size: '1',
                         name: 'Widget name',
                         src: 'Image URL',
-                        linkUrl: 'Link URL',
+                        href: 'Link URL',
                         linkText: 'Link Text',
-                        listItems: 'Put',
+                        listItems: 'Put each\nitem in a\nseparate row',
                         listType: 'unordered'
                     }
                 ]
