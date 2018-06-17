@@ -64,7 +64,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             return {
                 widgets: state.widgets.map(widget => {
                     if (widget.id === action.id) {
-                        widget.order = action.order
+                        widget.listType = action.listType
                     }
                     return Object.assign({}, widget)
                 })
@@ -94,7 +94,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             return {
                 widgets: state.widgets.map(widget => {
                     if (widget.id ===action.id) {
-                        widget.imageUrl = action.imageUrl
+                        widget.src = action.src
                     }
                     return Object.assign({}, widget)
                 })
@@ -114,16 +114,14 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 
         case constants.SAVE:
 
-
             fetch('http://localhost:8080/api/lesson/362/widget', {
                 method: 'post',
                 body: JSON.stringify(state.widgets),
                 headers: {
                     'content-type': 'application/json'}
             });
-
-
             return state;
+
         case constants.FIND_ALL_WIDGETS:
             newState = Object.assign({}, state);
             newState.widgets = action.widgets;
@@ -145,11 +143,11 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         widgetType: 'Heading',
                         size: '1',
                         name: 'Widget name',
-                        imageUrl: 'Image URL',
+                        src: 'Image URL',
                         linkUrl: 'Link URL',
                         linkText: 'Link Text',
-                        listItems: 'Put each\nitem in\na separate row',
-                        order: 'unordered'
+                        listItems: 'Put',
+                        listType: 'unordered'
                     }
                 ]
             };

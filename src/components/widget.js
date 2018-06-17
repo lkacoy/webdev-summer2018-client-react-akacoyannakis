@@ -61,7 +61,7 @@ const Image = ({widget, preview, nameChanged, imageUrlChanged}) => {
         <div hidden={preview}>
             <input className="form-control mb-4"
                    onChange={() => imageUrlChanged(widget.id, imageUrlElem.value)}
-                   value={widget.imageUrl}
+                   value={widget.src}
                    ref={node => imageUrlElem = node}/>
             <input className="form-control mb-5"
                    value={widget.name}
@@ -83,7 +83,7 @@ const List = ({widget, preview, nameChanged, listItemsChanged, listOrderChanged}
                       ref={node => listElem = node}/>
             <select className="form-control mb-4"
                     onChange={() => listOrderChanged(widget.id, listOrderElem.value)}
-                    value={widget.order}
+                    value={widget.listType}
                     ref={node => listOrderElem = node}>
                 <option value="unordered">Unordered list</option>
                 <option value="ordered">Ordered list</option>

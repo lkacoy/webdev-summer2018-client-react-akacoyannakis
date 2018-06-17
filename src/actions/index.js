@@ -39,7 +39,7 @@ export const listOrderChanged = (dispatch, widgetId, newOrder) => (
     dispatch({
         type: constants.LIST_ORDER_CHANGED,
         id: widgetId,
-        order: newOrder
+        listType: newOrder
     })
 );
 
@@ -63,7 +63,7 @@ export const imageUrlChanged = (dispatch, widgetId, newImageUrl) => (
     dispatch({
         type: constants.IMAGE_URL_CHANGED,
         id: widgetId,
-        imageUrl: newImageUrl
+        src: newImageUrl
     })
 );
 
