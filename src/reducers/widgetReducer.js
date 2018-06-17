@@ -1,6 +1,6 @@
 import * as constants from "../constants/index"
 
-export const widgetReducer = (state = {widgets: [], preview: false}, action) => {
+export const widgetReducer = (state = {widgets: [], preview: false, lessonId: '362'}, action) => {
     let newState;
     switch (action.type) {
 
@@ -109,7 +109,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         widget.dType = action.widgetType;
                         if (widget.widgetType === 'Paragraph') {
                             widget.text = 'Paragraph text'
-                        } else if (widget.widgettype === 'Link') {
+                        } else if (widget.widgetType === 'Link') {
                             widget.text = 'Link text'
                         }
                     }
@@ -120,7 +120,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
 
         case constants.SAVE:
 
-            fetch('http://localhost:8080/api/lesson/362/widget', {
+            fetch('http://localhost:8080/api/lesson/' + state.lessonId + '/widget', {
                 method: 'post',
                 body: JSON.stringify(state.widgets),
                 headers: {

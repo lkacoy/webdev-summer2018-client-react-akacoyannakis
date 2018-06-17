@@ -49,7 +49,8 @@ class WidgetList extends Component {
 
 const stateToPropertiesMapper = (state) => ({
     widgets: state.widgets,
-    previewMode: state.preview
+    previewMode: state.preview,
+    lessonId: state.lessonId
 });
 const dispatcherToPropsMapper
     = dispatch => ({
