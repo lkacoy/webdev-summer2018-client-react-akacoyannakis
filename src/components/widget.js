@@ -82,22 +82,26 @@ const List = ({widget, preview, nameChanged, listItemsChanged, listOrderChanged}
     let listElem;
     let listOrderElem;
     return (
-        <div hidden={preview}>
-            <textarea className="form-control mb-4"
-                      onChange={() => listItemsChanged(widget.id, listElem.value)}
-                      value={widget.listItems}
-                      ref={node => listElem = node}/>
-            <select className="form-control mb-4"
-                    onChange={() => listOrderChanged(widget.id, listOrderElem.value)}
-                    value={widget.listType}
-                    ref={node => listOrderElem = node}>
-                <option value="unordered">Unordered list</option>
-                <option value="ordered">Ordered list</option>
-            </select>
-            <input className="form-control mb-5"
-                   onChange={() => nameChanged(widget.id, nameElem.value)}
-                   value={widget.name}
-                   ref={node => nameElem = node}/>
+        <div>
+            <div hidden={preview}>
+                <textarea className="form-control mb-4"
+                          onChange={() => listItemsChanged(widget.id, listElem.value)}
+                          value={widget.listItems}
+                          ref={node => listElem = node}/>
+                <select className="form-control mb-4"
+                        onChange={() => listOrderChanged(widget.id, listOrderElem.value)}
+                        value={widget.listType}
+                        ref={node => listOrderElem = node}>
+                    <option value="unordered">Unordered list</option>
+                    <option value="ordered">Ordered list</option>
+                </select>
+                <input className="form-control mb-5"
+                       onChange={() => nameChanged(widget.id, nameElem.value)}
+                       value={widget.name}
+                       ref={node => nameElem = node}/>
+                <h3>Preview</h3>
+            </div>
+            {renderListItems(widget)}
         </div>
     )
 };
@@ -122,6 +126,33 @@ const Link = ({widget, preview, nameChanged, linkTextChanged, linkUrlChanged}) =
                  ref={node => nameElem = node}/>
       </div>
   )
+};
+
+const renderListItems = widget => {
+    if (widget.listType === "unordered") {
+        return (
+            <ul>
+                {renderListItem(widget.listItems)}
+
+            </ul>
+        );
+    } else {
+        return (
+            <ol>
+                Ordered
+            </ol>
+        )
+    }
+};
+
+const renderListItem = listItems => {
+    const itemList = listItems.split('\n');
+    itemList.forEach(item => {
+        console.log(item);
+        return (
+            <li>{item}</li>
+        )
+    })
 };
 
 const moveUp = widget => {
