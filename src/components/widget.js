@@ -151,12 +151,12 @@ const renderListItems = widget => {
 
 const renderListItem = listItems => {
     const itemList = listItems.split('\n');
-    itemList.forEach(item => {
-        console.log(item);
+    let items = itemList.map(item => {
         return (
             <li>{item}</li>
         )
-    })
+    });
+    return (items);
 };
 
 const moveUp = widget => {
