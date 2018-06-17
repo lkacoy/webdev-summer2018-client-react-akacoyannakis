@@ -143,7 +143,7 @@ const renderListItems = widget => {
     } else {
         return (
             <ol>
-                Ordered
+                {renderListItem(widget.listItems)}
             </ol>
         )
     }
