@@ -106,6 +106,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                 widgets: state.widgets.filter((widget) => {
                     if(widget.id === action.id) {
                         widget.widgetType = action.widgetType;
+                        widget.dType = action.widgetType;
                         if (widget.widgetType === 'Paragraph') {
                             widget.text = 'Paragraph text'
                         }
@@ -149,7 +150,8 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
                         href: 'Link URL',
                         linkText: 'Link Text',
                         listItems: 'Put each\nitem in a\nseparate row',
-                        listType: 'unordered'
+                        listType: 'unordered',
+                        dType: 'Heading'
                     }
                 ]
             };
