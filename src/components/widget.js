@@ -60,15 +60,19 @@ const Image = ({widget, preview, nameChanged, imageUrlChanged}) => {
     let nameElem;
     let imageUrlElem;
     return (
-        <div hidden={preview}>
-            <input className="form-control mb-4"
-                   onChange={() => imageUrlChanged(widget.id, imageUrlElem.value)}
-                   value={widget.src}
-                   ref={node => imageUrlElem = node}/>
-            <input className="form-control mb-5"
-                   value={widget.name}
-                   onChange={() => nameChanged(widget.id, nameElem.value)}
-                   ref={node => nameElem = node}/>
+        <div>
+            <div hidden={preview}>
+                <input className="form-control mb-4"
+                       onChange={() => imageUrlChanged(widget.id, imageUrlElem.value)}
+                       value={widget.src}
+                       ref={node => imageUrlElem = node}/>
+                <input className="form-control mb-5"
+                       value={widget.name}
+                       onChange={() => nameChanged(widget.id, nameElem.value)}
+                       ref={node => nameElem = node}/>
+                <h3>Preview</h3>
+            </div>
+            {widget.src}
         </div>
     )
 };
