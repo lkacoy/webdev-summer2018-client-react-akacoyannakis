@@ -105,7 +105,7 @@ export const widgetReducer = (state = {widgets: [], preview: false}, action) => 
             let newState = {
                 widgets: state.widgets.filter((widget) => {
                     if(widget.id === action.id) {
-                        widget.widgetType = action.widgetType
+                        widget.widgetType = action.widgetType;
                         if (widget.widgetType === 'Paragraph') {
                             widget.text = 'Paragraph text'
                         }
