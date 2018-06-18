@@ -23,7 +23,6 @@ export default class LessonForm extends React.Component {
         this.setLessonId(this.props.lessonId);
     }
     componentWillReceiveProps(newProps){
-        console.log(newProps);
         this.state.lessonId = newProps.lessonId;
         this.findLessonById(this.state.lessonId);
     }

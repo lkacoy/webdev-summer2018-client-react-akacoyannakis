@@ -9,23 +9,15 @@ class WidgetList extends Component {
         this.state = {
             lessonId: ''
         };
-        let url = window.location.href;
-        let lessonId = url.split('/').pop().trim();
-        let param = url.split('/').length-1;
-        console.log("param " + param);
-        if (param == 8) {
-            this.props.findWidgetByLessonId(lessonId);
-        }
-        else {
-            console.log("not lesson Id");
-        }
     }
 
     componentDidMount() {
         this.setLessonId(this.props.lessonId);
     }
     componentWillReceiveProps(newProps){
+        console.log(newProps);
         this.state.lessonId = newProps.lessonId;
+        this.props.findWidgetByLessonId(this.state.lessonId);
     }
 
     setLessonId(lessonId) {
