@@ -6,7 +6,25 @@ import WidgetContainer from '../components/widget'
 class WidgetList extends Component {
     constructor(props) {
         super(props);
-        this.props.findAllWidgets()
+        console.log(props);
+        console.log("hit constructor");
+        this.state = {
+            lessonId: ''
+        };
+        let url = window.location.href;
+        let lessonId = url.split('/').pop().trim();
+        this.props.findWidgetByLessonId(lessonId);
+    }
+
+    componentDidMount() {
+        this.setLessonId(this.props.lessonId);
+    }
+    componentWillReceiveProps(newProps){
+        this.state.lessonId = newProps.lessonId;
+    }
+
+    setLessonId(lessonId) {
+        this.setState({lessonId: lessonId});
     }
 
     renderWidgets() {
@@ -21,7 +39,7 @@ class WidgetList extends Component {
     }
 
     render() {
-        console.log(this.props.widgets);
+        console.log("lesson ID for props" + this.props.lessonId);
         return(
             <div>
                 <div className="row pull-right">
@@ -55,8 +73,9 @@ const stateToPropertiesMapper = (state) => ({
 const dispatcherToPropsMapper
     = dispatch => ({
     findAllWidgets: () => actions.findAllWidgets(dispatch),
+    findWidgetByLessonId: (lessonId) => actions.findWidgetsByLessonId(dispatch, lessonId),
     addWidget: () => actions.addWidget(dispatch),
-    save: () => actions.save(dispatch),
+    save: (lessonId) => actions.save(dispatch, lessonId),
     preview: () => actions.preview(dispatch)
 });
 const App = connect(

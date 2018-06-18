@@ -119,8 +119,10 @@ export const widgetReducer = (state = {widgets: [], preview: false, lessonId: '3
             return JSON.parse(JSON.stringify(newState));
 
         case constants.SAVE:
-
-            fetch('http://localhost:8080/api/lesson/' + state.lessonId + '/widget', {
+            let url = window.location.href;
+            let lessonId = url.split('/').pop().trim();
+            console.log(url + "URL");
+            fetch('http://localhost:8080/api/lesson/' + lessonId + '/widget', {
                 method: 'post',
                 body: JSON.stringify(state.widgets),
                 headers: {
@@ -131,6 +133,8 @@ export const widgetReducer = (state = {widgets: [], preview: false, lessonId: '3
         case constants.FIND_ALL_WIDGETS:
             newState = Object.assign({}, state);
             newState.widgets = action.widgets;
+            console.log(this.props);
+            console.log(state);
             return newState;
         case constants.DELETE_WIDGET:
             return {

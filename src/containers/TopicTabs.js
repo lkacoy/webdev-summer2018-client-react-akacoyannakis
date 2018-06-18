@@ -1,6 +1,12 @@
 import React from "react";
 import TopicService from "../services/TopicService";
 import TopicTabItem from "../components/TopicTabItem";
+import {widgetReducer} from "../reducers/widgetReducer";
+import App from "../containers/widgetList";
+import {createStore} from 'redux';
+import {Provider} from "react-redux";
+
+let store = createStore(widgetReducer);
 
 export default class TopicTabs extends React.Component {
 
@@ -33,9 +39,14 @@ export default class TopicTabs extends React.Component {
 
     render() {
         return (
+            <div>
             <div className="row">
                 {this.renderListOfTopics()}
                 <button className='btn btn-primary mr-4'><i className="fa fa-plus"></i></button>
+            </div>
+                <Provider store={store}>
+                    <App lessonId={this.state.lessonId}/>
+                </Provider>
             </div>
         );
     }
@@ -48,6 +59,7 @@ export default class TopicTabs extends React.Component {
                         <TopicTabItem key={topic.id}
                                       topic={topic}/>
                     </ul>
+
                 )
             });
             return (topics);

@@ -41,9 +41,9 @@ export default class LessonForm extends React.Component {
             <h3>Lesson - {this.state.lesson.title}</h3>
             <TopicTabs key={this.state.lessonId} lessonId={this.state.lessonId}/>
 
-            <Provider store={store}>
-                <App/>
-            </Provider>
+            {/*<Provider store={store}>
+                <App lessonId={this.state.lessonId}/>
+            </Provider>*/}
         </div>
     }
 

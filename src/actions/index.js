@@ -74,11 +74,19 @@ export const findAllWidgets = dispatch => {
             type: constants.FIND_ALL_WIDGETS,
             widgets: widgets }))
 };
+export const findWidgetsByLessonId = (dispatch, lessonId) => {
+    fetch('http://localhost:8080/api/lesson/'+ lessonId+ '/widget')
+        .then(response => (response.json()))
+        .then(widgets => dispatch({
+            type: constants.FIND_ALL_WIDGETS,
+            widgets: widgets }))
+};
 export const addWidget = dispatch => (
     dispatch({type: constants.ADD_WIDGET})
 );
-export const save = dispatch => (
-    dispatch({type: constants.SAVE})
+export const save = (dispatch, lessonId) => (
+    dispatch({type: constants.SAVE,
+        lessonId: lessonId})
 );
 export const preview = dispatch => (
     dispatch({type: constants.PREVIEW})
