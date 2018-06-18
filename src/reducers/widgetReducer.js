@@ -1,4 +1,5 @@
 import * as constants from "../constants/index"
+import 'array.prototype.move';
 
 export const widgetReducer = (state = {widgets: [], preview: false, lessonId: '362'}, action) => {
     let newState;
@@ -156,22 +157,23 @@ export const widgetReducer = (state = {widgets: [], preview: false, lessonId: '3
                         href: 'Link URL',
                         listItems: 'Put each\nitem in a\nseparate row',
                         listType: 'unordered',
-                        dType: 'Heading'
+                        dType: 'Heading',
+                        orderNumber: state.widgets.length+1
                     }
                 ]
             };
 
         case constants.MOVE_UP:
-            let index = state.indexOf(action.widget);
-            state.move(index, index - 1);
-            return state.splice(0);
+            let index = state.widgets.indexOf(action.widget);
+            state.widgets.move(index, index - 1);
+            return state.widgets.splice(0);
+
+        case constants.MOVE_DOWN:
+            let indexDown = state.widgets.indexOf(action.widget);
+            state.widgets.move(indexDown, indexDown + 1);
+            return state.widgets.splice(0);
 
         default:
             return state
     }
-};
-
-Array.prototype.move
-    = function (from, to) {
-    this.splice(to, 0, this.splice(from, 1)[0]);
 };

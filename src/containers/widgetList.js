@@ -33,7 +33,7 @@ class WidgetList extends Component {
     }
 
     renderWidgets() {
-        if (this.props.widgets) {
+        if (this.props.widgets && this.props.widgets.length > 0) {
             return this.props.widgets.map(widget => (
                     <WidgetContainer widget={widget}
                                      preview={this.props.previewMode}
