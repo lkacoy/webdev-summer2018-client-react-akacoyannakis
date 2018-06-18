@@ -39,11 +39,14 @@ export default class LessonForm extends React.Component {
         return <div className="mt-5">
             <h3>Lesson - {this.state.lesson.title}</h3>
             <TopicTabs key={this.state.lessonId} lessonId={this.state.lessonId}/>
+
         </div>
     }
 
     findLessonById(lessonId) {
-        this.lessonService.findLessonById(lessonId).then((lesson) => {this.setLesson(lesson)});
+        if (lessonId !== undefined) {
+            this.lessonService.findLessonById(lessonId).then((lesson) => {this.setLesson(lesson)});
+        }
     }
 
 

@@ -6,9 +6,21 @@ import WidgetContainer from '../components/widget'
 class WidgetList extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            lessonId: ''
-        };
+
+        let url = window.location.href;
+        let lessonId = url.split('/').pop().trim();
+        let param = url.split('/').length-1;
+        console.log("param " + param);
+        if (param == 8) {
+            this.state = {
+                lessonId: lessonId
+            };
+            this.props.findWidgetByLessonId(lessonId);
+        }
+        else {
+            console.log("not lesson Id");
+        }
+
     }
 
     componentDidMount() {
@@ -16,8 +28,12 @@ class WidgetList extends Component {
     }
     componentWillReceiveProps(newProps){
         console.log(newProps);
-        this.state.lessonId = newProps.lessonId;
-        this.props.findWidgetByLessonId(this.state.lessonId);
+        console.log("componentWillReceiveProps");
+        if (this.state.lessonId !== newProps.lessonId) {
+            this.state.lessonId = newProps.lessonId;
+            this.props.findWidgetByLessonId(this.state.lessonId);
+        }
+        console.log(this.state.lessonId);
     }
 
     setLessonId(lessonId) {

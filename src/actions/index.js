@@ -75,13 +75,14 @@ export const findAllWidgets = dispatch => {
             widgets: widgets }))
 };
 export const findWidgetsByLessonId = (dispatch, lessonId) => {
+    console.log("lesson id in action "+lessonId);
     if (lessonId !== undefined) {
-        console.log(lessonId);
         fetch('http://localhost:8080/api/lesson/'+ lessonId+ '/widget')
             .then(response => (response.json()))
             .then(widgets => dispatch({
                 type: constants.FIND_ALL_WIDGETS,
-                widgets: widgets }))
+                widgets: widgets,
+                lessonId: lessonId}))
     }
 
 };

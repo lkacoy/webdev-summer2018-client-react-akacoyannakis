@@ -1,7 +1,8 @@
 import * as constants from "../constants/index"
 import 'array.prototype.move';
 
-export const widgetReducer = (state = {widgets: [], preview: false, lessonId: '362'}, action) => {
+export const widgetReducer = (state = {widgets: [], preview: false, lessonId: ''}, action) => {
+    console.log("REDUCER");
     let newState;
     switch (action.type) {
 
@@ -134,8 +135,10 @@ export const widgetReducer = (state = {widgets: [], preview: false, lessonId: '3
         case constants.FIND_ALL_WIDGETS:
             newState = Object.assign({}, state);
             newState.widgets = action.widgets;
-            console.log(this.props);
+            newState.lessonId = action.lessonId;
+            console.log("state");
             console.log(state);
+            console.log(newState);
             return newState;
         case constants.DELETE_WIDGET:
             return {
