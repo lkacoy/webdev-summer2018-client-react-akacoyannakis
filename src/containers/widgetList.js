@@ -6,14 +6,19 @@ import WidgetContainer from '../components/widget'
 class WidgetList extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
-        console.log("hit constructor");
         this.state = {
             lessonId: ''
         };
         let url = window.location.href;
         let lessonId = url.split('/').pop().trim();
-        this.props.findWidgetByLessonId(lessonId);
+        let param = url.split('/').length-1;
+        console.log("param " + param);
+        if (param == 8) {
+            this.props.findWidgetByLessonId(lessonId);
+        }
+        else {
+            console.log("not lesson Id");
+        }
     }
 
     componentDidMount() {
@@ -39,7 +44,6 @@ class WidgetList extends Component {
     }
 
     render() {
-        console.log("lesson ID for props" + this.props.lessonId);
         return(
             <div>
                 <div className="row pull-right">
