@@ -1,5 +1,5 @@
 const TOPIC_API_URL =
-    'http://localhost:8080/api/lesson/LID/topic';
+    'https://web2018-lexikacoyannakis.herokuapp.com/api/lesson/LID/topic';
 
 let _singleton = Symbol();
 export default class TopicService {

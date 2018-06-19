@@ -68,7 +68,7 @@ export const imageUrlChanged = (dispatch, widgetId, newImageUrl) => (
 );
 
 export const findAllWidgets = dispatch => {
-    fetch('http://localhost:8080/api/widget')
+    fetch('https://web2018-lexikacoyannakis.herokuapp.com/api/widget')
         .then(response => (response.json()))
         .then(widgets => dispatch({
             type: constants.FIND_ALL_WIDGETS,
@@ -80,7 +80,7 @@ export const findWidgetsByLessonId = (dispatch) => {
     let param = url.split('/').length-1;
     if (param == 8) {
         console.log("lesson id in action " + lessonId);
-            fetch('http://localhost:8080/api/lesson/' + lessonId + '/widget')
+            fetch('https://web2018-lexikacoyannakis.herokuapp.com/api/lesson/' + lessonId + '/widget')
                 .then(response => (response.json()))
                 .then(widgets => dispatch({
                     type: constants.FIND_ALL_WIDGETS,

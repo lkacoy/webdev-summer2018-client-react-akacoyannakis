@@ -124,7 +124,7 @@ export const widgetReducer = (state = {widgets: [], preview: false, lessonId: ''
             let url = window.location.href;
             let lessonId = url.split('/').pop().trim();
             console.log(url + "URL");
-            fetch('http://localhost:8080/api/lesson/' + lessonId + '/widget', {
+            fetch('https://web2018-lexikacoyannakis.herokuapp.com/api/lesson/' + lessonId + '/widget', {
                 method: 'post',
                 body: JSON.stringify(state.widgets),
                 headers: {
