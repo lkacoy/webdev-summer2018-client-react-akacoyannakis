@@ -42,7 +42,7 @@ export default class TopicTabs extends React.Component {
             <div>
             <div className="row">
                 {this.renderListOfTopics()}
-                <button className='btn btn-primary mr-4'><i className="fa fa-plus"></i></button>
+                <button className='btn btn-primary mr-4' onClick={() => this.addTopic()}><i className="fa fa-plus"></i></button>
             </div>
                 <Provider store={store}>
                     <App lessonId={this.state.lessonId}/>
@@ -69,5 +69,18 @@ export default class TopicTabs extends React.Component {
     findAllTopicsForLesson(lessonId) {
         console.log(lessonId);
         this.topicService.findAllTopicsForLesson(lessonId).then((topics) => {this.setTopics(topics)});
+    }
+
+    addTopic() {
+        if (this.state.topics && this.state.topics.length ==0) {
+            console.log("initial Topic");
+            this.state.topic.title = 'Topic 1';
+        } else {
+            let nextTopic = this.state.topics.length +1;
+            console.log("nextTopic " + nextTopic);
+            this.state.topic.title = 'Topic '+ nextTopic;
+        }
+        this.topicService.createTopic(this.state.lessonId, this.state.topic)
+            .then(() => this.findAllTopicsForLesson(this.state.lessonId));
     }
 }

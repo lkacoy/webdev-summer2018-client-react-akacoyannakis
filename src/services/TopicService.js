@@ -16,6 +16,16 @@ export default class TopicService {
                 return response.json();
             })
     }
+
+    createTopic(lessonId, topic) {
+        return fetch(TOPIC_API_URL.replace('LID', lessonId),
+            {
+                body: JSON.stringify(topic),
+                headers: { 'Content-Type': 'application/json' },
+                method: 'POST'
+            }).then(function (response)
+        { return response.json(); })
+    }
     static get instance() {
         if(!this[_singleton])
             this[_singleton] = new TopicService(_singleton);
