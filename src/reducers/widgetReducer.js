@@ -136,6 +136,7 @@ export const widgetReducer = (state = {widgets: [], preview: false, lessonId: ''
             newState = Object.assign({}, state);
             newState.widgets = action.widgets;
             newState.lessonId = action.lessonId;
+            console.log(action);
             console.log("state");
             console.log(state);
             console.log(newState);

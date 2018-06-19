@@ -74,15 +74,17 @@ export const findAllWidgets = dispatch => {
             type: constants.FIND_ALL_WIDGETS,
             widgets: widgets }))
 };
-export const findWidgetsByLessonId = (dispatch, lessonId) => {
-    console.log("lesson id in action "+lessonId);
-    if (lessonId !== undefined) {
-        fetch('http://localhost:8080/api/lesson/'+ lessonId+ '/widget')
-            .then(response => (response.json()))
-            .then(widgets => dispatch({
-                type: constants.FIND_ALL_WIDGETS,
-                widgets: widgets,
-                lessonId: lessonId}))
+export const findWidgetsByLessonId = (dispatch) => {
+    let url = window.location.href;
+    let lessonId = url.split('/').pop().trim();
+    let param = url.split('/').length-1;
+    if (param == 8) {
+        console.log("lesson id in action " + lessonId);
+            fetch('http://localhost:8080/api/lesson/' + lessonId + '/widget')
+                .then(response => (response.json()))
+                .then(widgets => dispatch({
+                    type: constants.FIND_ALL_WIDGETS,
+                    widgets: widgets }))
     }
 
 };
